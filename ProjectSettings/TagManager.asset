@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Left Side
   - Right Side
+  - Ground
   layers:
   - Default
   - TransparentFX
