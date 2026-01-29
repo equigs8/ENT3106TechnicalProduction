@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -143,12 +143,12 @@ TextureImporter:
       name: male_hero-idle_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 47
-        width: 34
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 41
+        y: 48
+        width: 32
+        height: 37
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: male_hero-idle_1
       rect:
         serializedVersion: 2
-        x: 168
-        y: 47
-        width: 34
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 169
+        y: 48
+        width: 32
+        height: 37
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: male_hero-idle_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 47
-        width: 34
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 297
+        y: 48
+        width: 32
+        height: 37
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: male_hero-idle_3
       rect:
         serializedVersion: 2
-        x: 424
-        y: 47
-        width: 34
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 425
+        y: 48
+        width: 32
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: male_hero-idle_4
       rect:
         serializedVersion: 2
-        x: 553
-        y: 47
-        width: 33
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 554
+        y: 48
+        width: 31
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: male_hero-idle_5
       rect:
         serializedVersion: 2
-        x: 682
-        y: 47
-        width: 32
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 683
+        y: 48
+        width: 30
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: male_hero-idle_6
       rect:
         serializedVersion: 2
-        x: 809
-        y: 47
-        width: 33
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 810
+        y: 48
+        width: 31
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: male_hero-idle_7
       rect:
         serializedVersion: 2
-        x: 937
-        y: 47
-        width: 33
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 938
+        y: 48
+        width: 31
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -319,12 +319,12 @@ TextureImporter:
       name: male_hero-idle_8
       rect:
         serializedVersion: 2
-        x: 1064
-        y: 47
-        width: 34
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1065
+        y: 48
+        width: 32
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: male_hero-idle_9
       rect:
         serializedVersion: 2
-        x: 1192
-        y: 47
-        width: 34
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1193
+        y: 48
+        width: 32
+        height: 37
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 857d3a1650b6b174fb55ccde2ac9713f
     internalID: 0
     vertices: []
     indices: 
@@ -371,7 +371,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":1.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":8,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       male_hero-idle_0: 3447589828770737623
       male_hero-idle_1: 256161503863029986

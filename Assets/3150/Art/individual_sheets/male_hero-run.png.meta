@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -143,12 +143,12 @@ TextureImporter:
       name: male_hero-run_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 47
-        width: 35
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 47
+        y: 48
+        width: 33
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: male_hero-run_1
       rect:
         serializedVersion: 2
-        x: 174
-        y: 47
-        width: 33
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 175
+        y: 48
+        width: 31
+        height: 34
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: male_hero-run_2
       rect:
         serializedVersion: 2
-        x: 301
-        y: 47
-        width: 34
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 302
+        y: 48
+        width: 32
+        height: 33
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: male_hero-run_3
       rect:
         serializedVersion: 2
-        x: 429
-        y: 47
-        width: 42
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 430
+        y: 48
+        width: 40
+        height: 35
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: male_hero-run_4
       rect:
         serializedVersion: 2
-        x: 558
-        y: 50
-        width: 41
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 559
+        y: 51
+        width: 39
+        height: 33
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: male_hero-run_5
       rect:
         serializedVersion: 2
-        x: 685
-        y: 47
-        width: 41
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 686
+        y: 48
+        width: 39
+        height: 36
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: male_hero-run_6
       rect:
         serializedVersion: 2
-        x: 813
-        y: 47
-        width: 34
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 814
+        y: 48
+        width: 32
+        height: 34
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: male_hero-run_7
       rect:
         serializedVersion: 2
-        x: 940
-        y: 47
-        width: 34
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 941
+        y: 48
+        width: 32
+        height: 33
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -319,12 +319,12 @@ TextureImporter:
       name: male_hero-run_8
       rect:
         serializedVersion: 2
-        x: 1067
-        y: 47
-        width: 39
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1068
+        y: 48
+        width: 37
+        height: 35
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: male_hero-run_9
       rect:
         serializedVersion: 2
-        x: 1196
-        y: 50
-        width: 38
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1197
+        y: 51
+        width: 36
+        height: 34
+      alignment: 8
+      pivot: {x: 1, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dd1f82fa0db9d2043a62e906af8adfda
     internalID: 0
     vertices: []
     indices: 
@@ -371,7 +371,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":1.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":8,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       male_hero-run_0: 6881137366877979371
       male_hero-run_1: -1237146446128320748
