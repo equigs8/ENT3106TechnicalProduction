@@ -1,5 +1,5 @@
-using System;
-using Unity.VisualScripting;
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,18 +11,53 @@ public class PlayerController : MonoBehaviour
     public float runningSpeed = 4f;
     public float jumpForce = 10f;
     public bool facingRight = true;
+    public bool turnAnimationFinshed = true;
 
+    [Header("Movement")]
+
+    [Header("Jumping")]
+    [Header("Gravity")]
+    public float baseGravity = 1f;
+    public float fallGravityMult = 2f;
+    public float maxFallSpeed = 20f;
+
+
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public Vector2 groundCheckSize;
+    public LayerMask groundLayer;
+    private bool isGrounded;
+
+    [Header("Wall Check")]
+    public Transform wallCheck;
+    public Vector2 wallCheckSize;
+    public LayerMask wallLayer;
+    [Header("Wall Slide")]
+    public bool isWallSliding;
+    public float wallSlideSpeed = 1f;
+
+    [Header("Attack")]
+    public float lastComboEnd = 0f;
+    public float cooldownTime = 0.5f;
+    public int comboCounter = 0;
+    private float lastPressed = 0f;
+    public float comboWindow;
+
+    //Components
     private Rigidbody2D rb2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private float horizontal;
     private bool jumpPressed;
-    private bool isGrounded;
+    
     private bool isFalling;
     private float yVelocity;
     private bool fallStarted;
     private bool jumping;
     private bool isRunning;
+    private bool isAttacking;
+    private bool canAttack;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,9 +69,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        jumpPressed = Input.GetButtonDown("Jump");
+        //horizontal = Input.GetAxis("Horizontal");
+        //jumpPressed = Input.GetButtonDown("Jump");
+        
 
+        animator.SetBool("isGrounded", isGrounded);
         if (isGrounded)
         {
             animator.SetBool("isGrounded", true);
@@ -46,6 +83,9 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isGrounded", false);
         }
+
+        animator.SetBool("isWallSliding", isWallSliding);
+
         if (fallStarted)
         {
             isFalling = true;
@@ -56,18 +96,24 @@ public class PlayerController : MonoBehaviour
             Jump();
         }   
 
-        if(horizontal > 0 && !facingRight)
-        {
-            ChangeDirection();
-            facingRight = true;
-        }
-        else if (horizontal < 0 && facingRight)
-        {
-            ChangeDirection();
-            facingRight = false;
-        }
+        // if(horizontal > 0 && !facingRight)
+        // {
+        //     ChangeDirection();
+        //     facingRight = true;
+        // }
+        // else if (horizontal < 0 && facingRight)
+        // {
+        //     ChangeDirection();
+        //     facingRight = false;
+        // }
         animator.SetFloat("yVelocity", rb2D.linearVelocity.y);
+        animator.SetFloat("magnitude", rb2D.linearVelocity.magnitude);
+        animator.SetBool("attack", isAttacking);
         Move();
+        GroundCheck();
+        ProcessGravity();
+        ProcessWallSlide();
+        Flip();
     }
 
     void Jump()
@@ -94,6 +140,8 @@ public class PlayerController : MonoBehaviour
             speed =  walkingSpeed;
         }
         rb2D.linearVelocity = new Vector2(horizontal * speed, rb2D.linearVelocity.y);
+
+        
 
         if(Mathf.Abs(rb2D.linearVelocity.x) <= 1 && Mathf.Abs(rb2D.linearVelocity.x) > 0)
         {
@@ -134,26 +182,137 @@ public class PlayerController : MonoBehaviour
 
     void FlipCharacter()
     {
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        Debug.Log("Flipped");
+        facingRight = !facingRight;
+        Vector3 ls = transform.localScale;
+        ls.x *= -1;
+        transform.localScale = ls;
+        turnAnimationFinshed = true;
+    }
+    public void AttackEnded()
+    {
+        comboCounter = 0;
     }
 
-
-    void OnCollisionEnter2D(Collision2D collision)
+    private void Flip()
     {
-        if (collision.gameObject.tag == "Ground")
+        if((facingRight && horizontal < 0 || !facingRight && horizontal > 0) && turnAnimationFinshed)
         {
-            Debug.Log("Grounded");
-            isGrounded = true;
+            turnAnimationFinshed = false;
+            animator.SetTrigger("changeDirection");
+            Debug.Log("Change Direction");
         }
+    }
+
+    private bool IsGrounded()
+    {
+        if(Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer))
+        {
+            return true;
+        }
+        return false;
+    }
+    private void GroundCheck()
+    {
+        isGrounded = IsGrounded();
+    }
+
+    private bool WallCheck()
+    {
+        return Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
+    }
+
+    private void ProcessGravity()
+    {
+        if (rb2D.linearVelocity.y < 0)
+        {
+            rb2D.gravityScale = baseGravity * fallGravityMult;
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, Mathf.Max(rb2D.linearVelocity.y, -maxFallSpeed));
+
+        }
+        else
+        {
+            rb2D.gravityScale = baseGravity;
+        }
+    }
+
+    private void ProcessWallSlide()
+    {
+        if (WallCheck())
+        {
+            //Debug.Log("Wall Check");
+        }
+        if(!isGrounded && WallCheck() && horizontal != 0)
+        {
+            //Debug.Log("Horizontal is: " + horizontal);
+            isWallSliding = true;
+
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, Mathf.Max(rb2D.linearVelocity.y, -wallSlideSpeed));
+            
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    public void NewMove(InputAction.CallbackContext context)
+    {
+        horizontal = context.ReadValue<Vector2>().x;
+        //Debug.Log(horizontal);
+    }
+
+    public void NewJump(InputAction.CallbackContext context)
+    {
+        if(IsGrounded()){
+            animator.SetTrigger("Jump");
+            if (context.performed)
+            {
+                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
+            }else if (context.canceled)
+            {
+                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, rb2D.linearVelocity.y * 0.5f);
+            }
+        }
+    }
+
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            animator.SetTrigger("Attack");
+            
+        }
+    }
+
+    IEnumerator ComboTimer()
+    {
+        yield return new WaitForSeconds(comboWindow);
+        isAttacking = false;
+    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Ground")
+    //     {
+    //         Debug.Log("Grounded");
+    //         isGrounded = true;
+    //     }
         
-    }
+    // }
 
-    void OnCollisionExit2D(Collision2D collision)
+    // void OnCollisionExit2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Ground")
+    //     {
+    //         isGrounded = false;
+    //     }
+    // }
+
+    void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(groundCheck.position, groundCheckSize);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(wallCheck.position, wallCheckSize);
     }
 }
