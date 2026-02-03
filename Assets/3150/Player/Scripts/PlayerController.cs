@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("magnitude", rb2D.linearVelocity.magnitude);
         animator.SetBool("attack", isAttacking);
         //CheckMovementLock();
-         Debug.Log(horizontal);
+        Debug.Log(horizontal);
         GroundCheck();
         LedgeCheck();
         ProcessGravity();

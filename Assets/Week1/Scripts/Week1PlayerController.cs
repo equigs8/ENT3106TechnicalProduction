@@ -8,6 +8,7 @@ public class Week1PlayerController : MonoBehaviour
     public float jumpForce = 500f;
     public bool facingRight = false;
 
+    private Animator animator;
     private Rigidbody2D rb2D;
     private SpriteRenderer leftArm;
     private SpriteRenderer rightArm;
@@ -18,6 +19,7 @@ public class Week1PlayerController : MonoBehaviour
 
     public bool isJumping = false;
     public bool isGrounded;
+    private float jumpVel = 0;
  
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +28,8 @@ public class Week1PlayerController : MonoBehaviour
         GetArmsLegsAndHead();
         
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        //Debug.Log(rb2D.gameObject.name);
     }
 
     // Update is called once per frame
@@ -43,13 +47,25 @@ public class Week1PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-
-
+        if(Mathf.Abs(horizontal) > 0)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
         transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
     }
     void Jump()
     {
+        animator.SetTrigger("jump");
+    }
+
+    public void JumpRelease()
+    {
         rb2D.AddForce(Vector2.up * jumpForce);
+        Debug.Log("Jump Release");
     }
     void ChangeDirection()
     {
