@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public int comboCounter = 0;
     private float lastPressed = 0f;
     public float comboWindow;
-
+    public bool isComboWindowOver;
     [Header("Ledge Grab")]
     public Transform ledgeCheck;
     public Vector2 ledgeCheckSize;
@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning;
     private bool isAttacking;
     private bool canAttack;
+    private bool attackEnded;
 
     private bool lockHorizontalMovement;
     private bool isGrabable;
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("yVelocity", rb2D.linearVelocity.y);
         animator.SetFloat("magnitude", rb2D.linearVelocity.magnitude);
         animator.SetBool("attack", isAttacking);
+        animator.SetInteger("comboCounter", comboCounter);
         //CheckMovementLock();
         Debug.Log(horizontal);
         GroundCheck();
@@ -149,6 +151,12 @@ public class PlayerController : MonoBehaviour
         Flip();
         Move();
         ProcessWallJump();
+        if (isComboWindowOver && attackEnded)
+        {
+            comboCounter = 0;
+            isAttacking = false;
+            Debug.Log("Attack Ended");
+        }
     }
     private void ProcessWallJump()
     {
@@ -287,7 +295,10 @@ public class PlayerController : MonoBehaviour
     }
     public void AttackEnded()
     {
-        comboCounter = 0;
+
+        attackEnded = true;
+        
+        
     }
 
     private void Flip()
@@ -439,15 +450,33 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            animator.SetTrigger("attackStart");
+            attackEnded = false;
+            comboCounter++;
+            if (comboCounter > 3)
+            {
+                comboCounter = 0;
+            }
+            if(!isAttacking){
+                isAttacking = true;
+                Debug.Log("Combo Number: " + comboCounter);
+                if(comboCounter == 1){
+                    animator.SetTrigger("attackStart");
+                }
+                StartCoroutine(ComboTimer());
+                
+            }
+            
+            
             
         }
     }
 
     IEnumerator ComboTimer()
     {
+        isComboWindowOver = false;
+        Debug.Log("Combo Timer");
         yield return new WaitForSeconds(comboWindow);
-        isAttacking = false;
+        isComboWindowOver = true;
     }
     // void OnCollisionEnter2D(Collision2D collision)
     // {
