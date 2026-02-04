@@ -64,6 +64,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 climbEndPosition;
     
 
+    [Header("Health")]
+    public int maxHealth;
+    public int currentHealth;
+
+
     //Components
     private Rigidbody2D rb2D;
     private Animator animator;
@@ -90,6 +95,14 @@ public class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if(maxHealth > 0)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            Debug.LogError("Max Health is not set");
+        }
     }
 
     // Update is called once per frame
@@ -151,6 +164,7 @@ public class PlayerController : MonoBehaviour
         Flip();
         Move();
         ProcessWallJump();
+
         if (isComboWindowOver && attackEnded)
         {
             comboCounter = 0;
@@ -160,10 +174,11 @@ public class PlayerController : MonoBehaviour
     }
     private void ProcessWallJump()
     {
-        if (isWallJumping && !wallJumpRelease)
+        if (isWallJumping && wallJumpRelease)
         {
-            rb2D.linearVelocity = new Vector2(0,0);
+            isWallJumping = false;
         }
+        animator.SetBool("wallJumping", isWallJumping);
     }
 
     private void CheckMovementLock()
@@ -192,20 +207,24 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Wall Jump");
         animator.SetTrigger("wallJump");
+        animator.SetBool("wallJumping", true);
         isWallJumping = true;
         wallJumpRelease = false;
     }
     public void WallJumpRelease()
     {
+        Debug.Log("WAll Jump Release");
         wallJumpRelease = true;
         rb2D.AddForce(Vector2.up * wallJumpForce);
-        if (facingRight)
-        {
-            rb2D.AddForce(Vector2.left * wallJumpForce);
-        }else
-        {
-            rb2D.AddForce(Vector2.right * wallJumpForce);
-        }
+        // if (facingRight)
+        // {
+        //     rb2D.AddForce(Vector2.right * wallJumpForce);
+        // }else
+        // {
+        //     rb2D.AddForce(Vector2.left * wallJumpForce);
+        // }
+        rb2D.AddForce(Vector2.right * wallJumpForce);
+        animator.SetBool("wallJumping", isWallJumping);
     }
     void Jump()
     {   
@@ -392,6 +411,7 @@ public class PlayerController : MonoBehaviour
             if (context.performed)
             {
                 WallJump();
+                Debug.Log("Preform Wall Jump");
             }else if (context.canceled)
             {
                 if (isLedgeGrabbing)
@@ -465,9 +485,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ComboTimer());
                 
             }
-            
-            
-            
         }
     }
 
@@ -503,6 +520,15 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    public int GetHealth()
+    {
+        return currentHealth;
     }
 }
 
