@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: b1e4f4920df67ba42abbf4a7d4e92eae
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: NightBorne_attack_Clip
+    second: {fileID: 7400000, guid: 851a159bc20962b4ebdafd03659193e1, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -75,7 +80,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
@@ -90,7 +95,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
@@ -102,7 +107,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639069411311868275
+  platformSettingsDirtyTick: 639070246184141619
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -129,8 +134,8 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.6, y: -0.55172414}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -150,8 +155,8 @@ ScriptedImporter:
     uvTransform: {x: 349, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.59375, y: -0.53333336}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -171,8 +176,8 @@ ScriptedImporter:
     uvTransform: {x: 349, y: 197}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -192,8 +197,8 @@ ScriptedImporter:
     uvTransform: {x: 93, y: 302}
   - name: Frame_3
     originalName: 
-    pivot: {x: 0.5, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -213,8 +218,8 @@ ScriptedImporter:
     uvTransform: {x: 263, y: 150}
   - name: Frame_4
     originalName: 
-    pivot: {x: 0.5769231, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -234,8 +239,8 @@ ScriptedImporter:
     uvTransform: {x: 263, y: 4}
   - name: Frame_5
     originalName: 
-    pivot: {x: 0.59259254, y: -0.34042555}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -255,8 +260,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 302}
   - name: Frame_6
     originalName: 
-    pivot: {x: 0.59259254, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -276,8 +281,8 @@ ScriptedImporter:
     uvTransform: {x: 174, y: 4}
   - name: Frame_7
     originalName: 
-    pivot: {x: 0.59259254, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -297,8 +302,8 @@ ScriptedImporter:
     uvTransform: {x: 174, y: 150}
   - name: Frame_8
     originalName: 
-    pivot: {x: 0.59259254, y: -0.3478261}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -318,8 +323,8 @@ ScriptedImporter:
     uvTransform: {x: 174, y: 296}
   - name: Frame_9
     originalName: 
-    pivot: {x: 0.27777776, y: -0.16393442}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -339,8 +344,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_10
     originalName: 
-    pivot: {x: 0.36956522, y: -0.3939394}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -360,8 +365,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 195}
   - name: Frame_11
     originalName: 
-    pivot: {x: 0.5757576, y: -0.53333336}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -521,6 +526,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 16384

@@ -44,6 +44,7 @@ public class HealthBar : MonoBehaviour
     {
         slider.maxValue = max;
         slider.value = current;
+        
     }
 
     // Update is called once per frame
@@ -66,6 +67,12 @@ public class HealthBar : MonoBehaviour
                     maxHealth = enemyController.GetMaxHealth();
                     currentHealth = enemyController.GetHealth();
                     InitHealthBar(maxHealth, currentHealth);
+                    Debug.Log("Slider Value: " + slider.value);
+                    if(slider.value == 0)
+                    {
+                        
+                        slider.transform.Find("Fill Area").gameObject.SetActive(false);
+                    }
                 }
                 break;
             

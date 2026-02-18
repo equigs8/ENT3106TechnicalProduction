@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,12 +46,15 @@ public class PlayerController : MonoBehaviour
     public bool wallJumpRelease;
 
     [Header("Attack")]
+    public int attackDamage = 1;
     public float lastComboEnd = 0f;
     public float cooldownTime = 0.5f;
     public int comboCounter = 0;
     private float lastPressed = 0f;
     public float comboWindow;
     public bool isComboWindowOver;
+    public float attackRange = .75f;
+
     [Header("Ledge Grab")]
     public Transform ledgeCheck;
     public Vector2 ledgeCheckSize;
@@ -84,7 +88,6 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking;
     private bool canAttack;
     private bool attackEnded;
-
     private bool lockHorizontalMovement;
     private bool isGrabable;
     
@@ -452,6 +455,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        animator.SetTrigger("tookDamage");
+        HealthCheck();
+    }
+
+    public void HealthCheck()
+    {
+        if (currentHealth <= 0)
+        {
+            animator.SetTrigger("death");
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("END GAME");
+    }
+
     public void ClimbEnded()
     {
         transform.position = climbEndPosition;
@@ -470,6 +493,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
+            EnemyController enemy = EnemyInAttackingRange();
+            if ( enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+            }
             attackEnded = false;
             comboCounter++;
             if (comboCounter > 3)
@@ -485,6 +513,43 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ComboTimer());
                 
             }
+        }
+    }
+
+    private EnemyController EnemyInAttackingRange()
+    {
+        RaycastHit2D rayHit; 
+
+        if (facingRight)
+        {
+            rayHit = Physics2D.Raycast(transform.position, Vector2.right, attackRange, LayerMask.GetMask("Enemy"));
+        }
+        else
+        {
+            rayHit = Physics2D.Raycast(transform.position, Vector2.left, attackRange, LayerMask.GetMask("Enemy"));
+        }
+        
+        Debug.DrawRay(transform.position, Vector2.right * attackRange, Color.red);
+        Debug.DrawRay(transform.position, Vector2.left * attackRange, Color.red);
+        
+        Debug.Log(rayHit.collider);
+        if(rayHit.collider != null){
+            return rayHit.collider.GetComponentInParent<EnemyController>();
+        }else {
+            return null;
+        }
+
+    }
+
+    public void Knockback(bool attackComingFromRight, float force)
+    {
+        if (attackComingFromRight)
+        {
+            rb2D.AddForce(new Vector2(force, 0));
+        }
+        else
+        {
+            rb2D.AddForce(new Vector2(-force, 0));
         }
     }
 
@@ -520,6 +585,9 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
+
+        Debug.DrawRay(transform.position, Vector2.right * attackRange, Color.blue);
+        Debug.DrawRay(transform.position, Vector2.left * attackRange, Color.blue);
     }
 
     public int GetMaxHealth()
