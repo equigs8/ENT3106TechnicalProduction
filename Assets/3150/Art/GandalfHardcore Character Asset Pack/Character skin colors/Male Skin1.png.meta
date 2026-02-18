@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 110645565249b404c9665ccbb4ef11c6
+guid: f5166e3f149ce634b8681222e15e900c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,10 +113,10 @@ TextureImporter:
       name: Male Skin1_0
       rect:
         serializedVersion: 2
-        x: 31
+        x: 16
         y: 384
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c559c7ab53b962446aba44d5cd05146f
-      internalID: 574763739
+      spriteID: 5391f54586df1364b80da33a8ccf2575
+      internalID: -738814722
       vertices: []
       indices: 
       edges: []
@@ -135,10 +135,10 @@ TextureImporter:
       name: Male Skin1_1
       rect:
         serializedVersion: 2
-        x: 111
+        x: 96
         y: 384
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd77339bedad0d94ba34ec7b98affd34
-      internalID: 992324441
+      spriteID: 02a6c18843b49f4468d09f7c46b12eab
+      internalID: 278497406
       vertices: []
       indices: 
       edges: []
@@ -157,10 +157,10 @@ TextureImporter:
       name: Male Skin1_2
       rect:
         serializedVersion: 2
-        x: 191
+        x: 176
         y: 384
-        width: 17
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,8 +169,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63324b4e89d9a00419c7d9cffb5aa0f9
-      internalID: -461685684
+      spriteID: efed06f180ad529468fcc588811b5eea
+      internalID: 1124956488
       vertices: []
       indices: 
       edges: []
@@ -179,10 +179,10 @@ TextureImporter:
       name: Male Skin1_3
       rect:
         serializedVersion: 2
-        x: 271
+        x: 256
         y: 384
-        width: 17
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +191,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 320b476fa020e684aa71e493d1b6e61a
-      internalID: -1854230150
+      spriteID: 596efaf8e35e5284195036457d73aabf
+      internalID: 535838237
       vertices: []
       indices: 
       edges: []
@@ -201,10 +201,10 @@ TextureImporter:
       name: Male Skin1_4
       rect:
         serializedVersion: 2
-        x: 351
+        x: 336
         y: 384
-        width: 17
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41401bbc2e9fec54285344e6d7a164eb
-      internalID: 810238273
+      spriteID: 73362505f20a35e428945c6cd9af80ca
+      internalID: 374817795
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
       name: Male Skin1_5
       rect:
         serializedVersion: 2
-        x: 31
+        x: 16
         y: 320
-        width: 19
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3f17b40c42811643b45b5366af1a7ea
-      internalID: -1327005071
+      spriteID: f052b572e266b4a49bac3b8265d9278d
+      internalID: -1400394586
       vertices: []
       indices: 
       edges: []
@@ -245,10 +245,10 @@ TextureImporter:
       name: Male Skin1_6
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 320
-        width: 16
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f672f6b4040010148af48ad81d00764b
-      internalID: -255826126
+      spriteID: 754b9797df297a84c9d20fc768a2f1a4
+      internalID: -741335524
       vertices: []
       indices: 
       edges: []
@@ -267,10 +267,10 @@ TextureImporter:
       name: Male Skin1_7
       rect:
         serializedVersion: 2
-        x: 193
+        x: 176
         y: 320
-        width: 15
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bbae1107bc14cf4684ba5de7026b631
-      internalID: 389265733
+      spriteID: 9b75f019c3f0a6a4d815e21a24877457
+      internalID: 1640068906
       vertices: []
       indices: 
       edges: []
@@ -289,10 +289,10 @@ TextureImporter:
       name: Male Skin1_8
       rect:
         serializedVersion: 2
-        x: 272
+        x: 256
         y: 320
-        width: 16
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,8 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 808d22668f662a94ea53c32c31687295
-      internalID: 260637685
+      spriteID: 65ee0d1f30ba8174aa6ff2f120ba05db
+      internalID: -1201550603
       vertices: []
       indices: 
       edges: []
@@ -311,10 +311,10 @@ TextureImporter:
       name: Male Skin1_9
       rect:
         serializedVersion: 2
-        x: 351
+        x: 336
         y: 320
-        width: 18
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,8 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68ece965d8132eb4db002976a883137d
-      internalID: -1216880104
+      spriteID: 43314c2469cae1b47ad35242e25d475f
+      internalID: -1993799705
       vertices: []
       indices: 
       edges: []
@@ -333,10 +333,10 @@ TextureImporter:
       name: Male Skin1_10
       rect:
         serializedVersion: 2
-        x: 432
+        x: 416
         y: 320
-        width: 16
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -345,8 +345,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d9f4be38ca8f44499db061ea0a5ef0d
-      internalID: 1952081954
+      spriteID: c0c83978e3b99984ea948de2df054f85
+      internalID: 2046187129
       vertices: []
       indices: 
       edges: []
@@ -355,10 +355,10 @@ TextureImporter:
       name: Male Skin1_11
       rect:
         serializedVersion: 2
-        x: 512
+        x: 496
         y: 320
-        width: 16
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,8 +367,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e97ba80f003e7d341803e3eba1cc838f
-      internalID: 601877785
+      spriteID: db54f5fee3c84e045838227ed87d294d
+      internalID: 559355243
       vertices: []
       indices: 
       edges: []
@@ -377,10 +377,10 @@ TextureImporter:
       name: Male Skin1_12
       rect:
         serializedVersion: 2
-        x: 592
+        x: 576
         y: 320
-        width: 16
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,8 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ba43038a314e02408adffbcb55dea64
-      internalID: -1003080978
+      spriteID: a150efbf0d68c3845b48f8aa0bae7065
+      internalID: 1428716115
       vertices: []
       indices: 
       edges: []
@@ -399,10 +399,10 @@ TextureImporter:
       name: Male Skin1_13
       rect:
         serializedVersion: 2
-        x: 28
+        x: 16
         y: 256
-        width: 26
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -411,8 +411,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbd472144b03c0749b2c276a89c01254
-      internalID: 1894202101
+      spriteID: 88ba91d560dd4f34ebd07336134f2fad
+      internalID: -978804551
       vertices: []
       indices: 
       edges: []
@@ -421,10 +421,10 @@ TextureImporter:
       name: Male Skin1_14
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 256
-        width: 19
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,8 +433,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39eb7cc081e93cf45a583ae7697873ee
-      internalID: 780093144
+      spriteID: bc475ed5f206bd74ea45f8660ad0b313
+      internalID: -656843306
       vertices: []
       indices: 
       edges: []
@@ -443,10 +443,10 @@ TextureImporter:
       name: Male Skin1_15
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 256
-        width: 15
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -455,8 +455,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5af2ca89ba2ed924a926b8b0637049b1
-      internalID: 1034182478
+      spriteID: 3c181ae33d0f00c4f8abb7db0d0849b3
+      internalID: -528665089
       vertices: []
       indices: 
       edges: []
@@ -465,10 +465,10 @@ TextureImporter:
       name: Male Skin1_16
       rect:
         serializedVersion: 2
-        x: 271
+        x: 256
         y: 256
-        width: 16
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -477,8 +477,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82cea382bd1f08d49b89e82bc377d79a
-      internalID: -1246075638
+      spriteID: 01c50b2abf0eadb45bc3462ef5ae591b
+      internalID: 1704763405
       vertices: []
       indices: 
       edges: []
@@ -487,10 +487,10 @@ TextureImporter:
       name: Male Skin1_17
       rect:
         serializedVersion: 2
-        x: 348
+        x: 336
         y: 256
-        width: 24
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -499,8 +499,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1187ccbf279b4834289f7d6aeef05e77
-      internalID: 788587395
+      spriteID: 4af90b8f1be9a6f4f891db5274c3dd23
+      internalID: 950566033
       vertices: []
       indices: 
       edges: []
@@ -509,10 +509,10 @@ TextureImporter:
       name: Male Skin1_18
       rect:
         serializedVersion: 2
-        x: 430
+        x: 416
         y: 256
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -521,8 +521,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 717ca27f8d07ebb4b9c9d26bb4f7554f
-      internalID: 858529559
+      spriteID: 1f45d8dd57e084b40bf63091f86f0329
+      internalID: -570067145
       vertices: []
       indices: 
       edges: []
@@ -531,10 +531,10 @@ TextureImporter:
       name: Male Skin1_19
       rect:
         serializedVersion: 2
-        x: 511
+        x: 496
         y: 256
-        width: 18
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -543,8 +543,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5352224ff8b01fe46b0662a17c954419
-      internalID: 1475397399
+      spriteID: acd6bcd0a56aac546b1014305ca6f1ab
+      internalID: -635674893
       vertices: []
       indices: 
       edges: []
@@ -553,10 +553,10 @@ TextureImporter:
       name: Male Skin1_20
       rect:
         serializedVersion: 2
-        x: 590
-        y: 257
-        width: 20
-        height: 43
+        x: 576
+        y: 256
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,8 +565,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01d8db64b83ac0341ae1cbe40a8b149a
-      internalID: -805776634
+      spriteID: feb1fcb48a223894894bc8f11daffa99
+      internalID: 1984883962
       vertices: []
       indices: 
       edges: []
@@ -575,10 +575,10 @@ TextureImporter:
       name: Male Skin1_21
       rect:
         serializedVersion: 2
-        x: 30
-        y: 193
-        width: 19
-        height: 46
+        x: 16
+        y: 192
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -587,8 +587,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0655258b41394df44b55105378c42b2e
-      internalID: 406374167
+      spriteID: 5804dde787738434eb974c6ae31d5a1f
+      internalID: 1025480353
       vertices: []
       indices: 
       edges: []
@@ -597,10 +597,10 @@ TextureImporter:
       name: Male Skin1_22
       rect:
         serializedVersion: 2
-        x: 110
-        y: 193
-        width: 19
-        height: 46
+        x: 96
+        y: 192
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,8 +609,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dfb6ef577f23fb429ef8342a5ab82a1
-      internalID: 1341532182
+      spriteID: b2890d1a95534cc479e4822783091347
+      internalID: 1481133933
       vertices: []
       indices: 
       edges: []
@@ -619,10 +619,10 @@ TextureImporter:
       name: Male Skin1_23
       rect:
         serializedVersion: 2
-        x: 190
-        y: 193
-        width: 19
-        height: 46
+        x: 176
+        y: 192
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -631,8 +631,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60ab42a1f1359a8439b2f2f55f1097f7
-      internalID: -973280701
+      spriteID: 121f191102c553c46bce924895865c50
+      internalID: -1063294262
       vertices: []
       indices: 
       edges: []
@@ -641,10 +641,10 @@ TextureImporter:
       name: Male Skin1_24
       rect:
         serializedVersion: 2
-        x: 270
-        y: 193
-        width: 19
-        height: 46
+        x: 256
+        y: 192
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -653,8 +653,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0671bad771f1a14a853186c25edbc59
-      internalID: -2111678739
+      spriteID: 93f1fd87465ca664b8b36ec95442139f
+      internalID: 1603477771
       vertices: []
       indices: 
       edges: []
@@ -663,10 +663,10 @@ TextureImporter:
       name: Male Skin1_25
       rect:
         serializedVersion: 2
-        x: 29
-        y: 129
-        width: 22
-        height: 46
+        x: 16
+        y: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -675,8 +675,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5103f4161c29d1441b1788196ab3f9c4
-      internalID: -1344729333
+      spriteID: 6915710f125dbe1489eaa8f5cf283053
+      internalID: 1906386387
       vertices: []
       indices: 
       edges: []
@@ -685,10 +685,10 @@ TextureImporter:
       name: Male Skin1_26
       rect:
         serializedVersion: 2
-        x: 109
-        y: 129
-        width: 22
-        height: 46
+        x: 96
+        y: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -697,8 +697,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef3310636490d4c4ca6d2169a5e45eab
-      internalID: 598750790
+      spriteID: 4c5afc9de819f4948ab024fb4e7fb8df
+      internalID: 1970719798
       vertices: []
       indices: 
       edges: []
@@ -707,10 +707,10 @@ TextureImporter:
       name: Male Skin1_27
       rect:
         serializedVersion: 2
-        x: 189
-        y: 129
-        width: 22
-        height: 46
+        x: 176
+        y: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -719,8 +719,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8030a3165e4e5c04d87aa54cbc5c5282
-      internalID: -1649806305
+      spriteID: 0b12bce1b496d31458a3856609315f28
+      internalID: -962329694
       vertices: []
       indices: 
       edges: []
@@ -729,10 +729,10 @@ TextureImporter:
       name: Male Skin1_28
       rect:
         serializedVersion: 2
-        x: 269
-        y: 129
-        width: 22
-        height: 46
+        x: 256
+        y: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -741,8 +741,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec56603669911794fba681a7e3c0e7da
-      internalID: 380319725
+      spriteID: 5ef40610067e19d48a8d09c6c0203d24
+      internalID: -173788243
       vertices: []
       indices: 
       edges: []
@@ -751,10 +751,10 @@ TextureImporter:
       name: Male Skin1_29
       rect:
         serializedVersion: 2
-        x: 31
+        x: 16
         y: 64
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -763,8 +763,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3943c8c61d89db499c1b0574d3053fd
-      internalID: 38712859
+      spriteID: 2e1a177424e94e04eaece2ecde80be8e
+      internalID: -428555501
       vertices: []
       indices: 
       edges: []
@@ -773,10 +773,10 @@ TextureImporter:
       name: Male Skin1_30
       rect:
         serializedVersion: 2
-        x: 109
+        x: 96
         y: 64
-        width: 24
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,8 +785,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 958fd38edef0df142aa5203c795245b7
-      internalID: 611394549
+      spriteID: 67904e311986b464c9cd17abf8ca1d02
+      internalID: -1612544068
       vertices: []
       indices: 
       edges: []
@@ -795,10 +795,10 @@ TextureImporter:
       name: Male Skin1_31
       rect:
         serializedVersion: 2
-        x: 191
+        x: 176
         y: 64
-        width: 26
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -807,8 +807,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b59996cec29fa0942a2b07585ead66a7
-      internalID: 2142121556
+      spriteID: 5cc426d1563156b4d9eff2b6e8dc8d7f
+      internalID: 1246371707
       vertices: []
       indices: 
       edges: []
@@ -817,10 +817,10 @@ TextureImporter:
       name: Male Skin1_32
       rect:
         serializedVersion: 2
-        x: 271
+        x: 256
         y: 64
-        width: 27
-        height: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -829,8 +829,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 074c5b1dbc6e8714596f2c2dc46b59ec
-      internalID: -1626107282
+      spriteID: b77c14083e59dd745bf04b9e81e36256
+      internalID: 1967421917
       vertices: []
       indices: 
       edges: []
@@ -839,10 +839,10 @@ TextureImporter:
       name: Male Skin1_33
       rect:
         serializedVersion: 2
-        x: 347
+        x: 336
         y: 64
-        width: 21
-        height: 41
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -851,8 +851,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07be608e3d9f88a45999d90e6acc7a13
-      internalID: 534163020
+      spriteID: 06d9f65bcffadac4b8653847638281ee
+      internalID: -1971432179
       vertices: []
       indices: 
       edges: []
@@ -861,10 +861,10 @@ TextureImporter:
       name: Male Skin1_34
       rect:
         serializedVersion: 2
-        x: 431
+        x: 416
         y: 64
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -873,8 +873,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c53223032d82694a96b69d76e4031d0
-      internalID: -1721112772
+      spriteID: 938404ed55867e949be00c6e5c7c22bf
+      internalID: -118627216
       vertices: []
       indices: 
       edges: []
@@ -883,10 +883,10 @@ TextureImporter:
       name: Male Skin1_35
       rect:
         serializedVersion: 2
-        x: 31
+        x: 16
         y: 0
-        width: 17
-        height: 43
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -895,8 +895,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f606596a7d097d4581850a0c70ebc4b
-      internalID: -612903774
+      spriteID: 9420832329b148847ad98fd53e33cf77
+      internalID: 2129437263
       vertices: []
       indices: 
       edges: []
@@ -905,10 +905,10 @@ TextureImporter:
       name: Male Skin1_36
       rect:
         serializedVersion: 2
-        x: 109
+        x: 96
         y: 0
-        width: 18
-        height: 41
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -917,8 +917,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fd5d75c97f8e3b44847207a452261d4
-      internalID: 694299176
+      spriteID: ffb95cac70087564ab9cad254f46b608
+      internalID: 1961548082
       vertices: []
       indices: 
       edges: []
@@ -927,10 +927,10 @@ TextureImporter:
       name: Male Skin1_37
       rect:
         serializedVersion: 2
-        x: 185
+        x: 176
         y: 0
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -939,8 +939,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94c8a3d89399e1e42bfc019015f17c91
-      internalID: 301454087
+      spriteID: ef6af4cf22f196142a4aa995fb375acc
+      internalID: -759017503
       vertices: []
       indices: 
       edges: []
@@ -949,10 +949,10 @@ TextureImporter:
       name: Male Skin1_38
       rect:
         serializedVersion: 2
-        x: 265
+        x: 256
         y: 0
-        width: 22
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -961,8 +961,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f0b49fff8906041be0d00ef4f92fdd
-      internalID: 749163783
+      spriteID: 94bbf946b9ae46049b2b166d2b442543
+      internalID: 937488785
       vertices: []
       indices: 
       edges: []
@@ -971,10 +971,10 @@ TextureImporter:
       name: Male Skin1_39
       rect:
         serializedVersion: 2
-        x: 345
+        x: 336
         y: 0
-        width: 22
-        height: 36
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -983,8 +983,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a376dc745e7155438b53dc4163cb471
-      internalID: 164674305
+      spriteID: 6c9cd6075cc78164da80d7651c091131
+      internalID: 447300923
       vertices: []
       indices: 
       edges: []
@@ -993,10 +993,10 @@ TextureImporter:
       name: Male Skin1_40
       rect:
         serializedVersion: 2
-        x: 424
+        x: 416
         y: 0
-        width: 23
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1005,8 +1005,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f581631678af2684db4282aa087f5a61
-      internalID: 365223717
+      spriteID: 42dd0d34235c50c4b9a2b4630e518e8f
+      internalID: -1955753775
       vertices: []
       indices: 
       edges: []
@@ -1015,10 +1015,10 @@ TextureImporter:
       name: Male Skin1_41
       rect:
         serializedVersion: 2
-        x: 501
+        x: 496
         y: 0
-        width: 26
-        height: 35
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1027,8 +1027,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ef932ffa448e4f47babe6392902cff3
-      internalID: -76416534
+      spriteID: 651280ca9af857c4aaa7e1629eb41ec3
+      internalID: 1946269764
       vertices: []
       indices: 
       edges: []
@@ -1037,10 +1037,10 @@ TextureImporter:
       name: Male Skin1_42
       rect:
         serializedVersion: 2
-        x: 563
+        x: 576
         y: 0
-        width: 46
-        height: 20
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1049,8 +1049,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b32e45a8d95e6d4183593cfea80d6cc
-      internalID: -2065053733
+      spriteID: 3a474941d14526b4a995f7308fa710de
+      internalID: -778318064
       vertices: []
       indices: 
       edges: []
@@ -1059,10 +1059,10 @@ TextureImporter:
       name: Male Skin1_43
       rect:
         serializedVersion: 2
-        x: 643
+        x: 656
         y: 0
-        width: 46
-        height: 8
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1071,8 +1071,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c4351057ef12bf4287be5ef7649b40e
-      internalID: -2130333935
+      spriteID: a766c403ebb5a6d49b08af053198c81d
+      internalID: -1277313550
       vertices: []
       indices: 
       edges: []
@@ -1081,10 +1081,10 @@ TextureImporter:
       name: Male Skin1_44
       rect:
         serializedVersion: 2
-        x: 723
+        x: 736
         y: 0
-        width: 46
-        height: 9
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1093,8 +1093,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd35d8811587c474bb364a33d7eb2ed6
-      internalID: -826793580
+      spriteID: a049b6758f4a282439d28afbe2c491ed
+      internalID: 213849731
       vertices: []
       indices: 
       edges: []
@@ -1103,7 +1103,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 78ffcbafdad1a4c49a3957ef7f32a0a4
+    spriteID: 2d5a9ccc050b8fc4ba9bb71ffb38df56
     internalID: 0
     vertices: []
     indices: 
@@ -1113,53 +1113,53 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":16.0,"y":16.0},"gridSpritePadding":{"x":32.0,"y":16.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Male Skin1_0: 574763739
-      Male Skin1_1: 992324441
-      Male Skin1_10: 1952081954
-      Male Skin1_11: 601877785
-      Male Skin1_12: -1003080978
-      Male Skin1_13: 1894202101
-      Male Skin1_14: 780093144
-      Male Skin1_15: 1034182478
-      Male Skin1_16: -1246075638
-      Male Skin1_17: 788587395
-      Male Skin1_18: 858529559
-      Male Skin1_19: 1475397399
-      Male Skin1_2: -461685684
-      Male Skin1_20: -805776634
-      Male Skin1_21: 406374167
-      Male Skin1_22: 1341532182
-      Male Skin1_23: -973280701
-      Male Skin1_24: -2111678739
-      Male Skin1_25: -1344729333
-      Male Skin1_26: 598750790
-      Male Skin1_27: -1649806305
-      Male Skin1_28: 380319725
-      Male Skin1_29: 38712859
-      Male Skin1_3: -1854230150
-      Male Skin1_30: 611394549
-      Male Skin1_31: 2142121556
-      Male Skin1_32: -1626107282
-      Male Skin1_33: 534163020
-      Male Skin1_34: -1721112772
-      Male Skin1_35: -612903774
-      Male Skin1_36: 694299176
-      Male Skin1_37: 301454087
-      Male Skin1_38: 749163783
-      Male Skin1_39: 164674305
-      Male Skin1_4: 810238273
-      Male Skin1_40: 365223717
-      Male Skin1_41: -76416534
-      Male Skin1_42: -2065053733
-      Male Skin1_43: -2130333935
-      Male Skin1_44: -826793580
-      Male Skin1_5: -1327005071
-      Male Skin1_6: -255826126
-      Male Skin1_7: 389265733
-      Male Skin1_8: 260637685
-      Male Skin1_9: -1216880104
+      Male Skin1_0: -738814722
+      Male Skin1_1: 278497406
+      Male Skin1_10: 2046187129
+      Male Skin1_11: 559355243
+      Male Skin1_12: 1428716115
+      Male Skin1_13: -978804551
+      Male Skin1_14: -656843306
+      Male Skin1_15: -528665089
+      Male Skin1_16: 1704763405
+      Male Skin1_17: 950566033
+      Male Skin1_18: -570067145
+      Male Skin1_19: -635674893
+      Male Skin1_2: 1124956488
+      Male Skin1_20: 1984883962
+      Male Skin1_21: 1025480353
+      Male Skin1_22: 1481133933
+      Male Skin1_23: -1063294262
+      Male Skin1_24: 1603477771
+      Male Skin1_25: 1906386387
+      Male Skin1_26: 1970719798
+      Male Skin1_27: -962329694
+      Male Skin1_28: -173788243
+      Male Skin1_29: -428555501
+      Male Skin1_3: 535838237
+      Male Skin1_30: -1612544068
+      Male Skin1_31: 1246371707
+      Male Skin1_32: 1967421917
+      Male Skin1_33: -1971432179
+      Male Skin1_34: -118627216
+      Male Skin1_35: 2129437263
+      Male Skin1_36: 1961548082
+      Male Skin1_37: -759017503
+      Male Skin1_38: 937488785
+      Male Skin1_39: 447300923
+      Male Skin1_4: 374817795
+      Male Skin1_40: -1955753775
+      Male Skin1_41: 1946269764
+      Male Skin1_42: -778318064
+      Male Skin1_43: -1277313550
+      Male Skin1_44: 213849731
+      Male Skin1_5: -1400394586
+      Male Skin1_6: -741335524
+      Male Skin1_7: 1640068906
+      Male Skin1_8: -1201550603
+      Male Skin1_9: -1993799705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
