@@ -323,6 +323,7 @@ MonoBehaviour:
   comboWindow: 0.25
   isComboWindowOver: 0
   attackRange: 1
+  comboResetTime: 0.5
   ledgeCheck: {fileID: 0}
   ledgeCheckSize: {x: 0, y: 0}
   ledgeLayer:
@@ -333,6 +334,7 @@ MonoBehaviour:
   ledgeGrabOffset2: {x: 0.52, y: 1, z: 0}
   maxHealth: 10
   currentHealth: 0
+  bufferWindow: 0.4
 --- !u!70 &93636934
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

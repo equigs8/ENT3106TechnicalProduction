@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public float comboWindow;
     public bool isComboWindowOver;
     public float attackRange = .75f;
+    public float comboResetTime = 0.5f;
+    private float lastAttackTime;
 
     [Header("Ledge Grab")]
     public Transform ledgeCheck;
@@ -157,7 +159,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("yVelocity", rb2D.linearVelocity.y);
         animator.SetFloat("magnitude", rb2D.linearVelocity.magnitude);
         animator.SetBool("attack", isAttacking);
-        animator.SetInteger("comboCounter", comboCounter);
+        //animator.SetInteger("comboCounter", comboCounter);
         //CheckMovementLock();
         Debug.Log(horizontal);
         GroundCheck();
@@ -168,12 +170,7 @@ public class PlayerController : MonoBehaviour
         Move();
         ProcessWallJump();
 
-        if (isComboWindowOver && attackEnded)
-        {
-            comboCounter = 0;
-            isAttacking = false;
-            Debug.Log("Attack Ended");
-        }
+        
     }
     private void ProcessWallJump()
     {
@@ -488,32 +485,78 @@ public class PlayerController : MonoBehaviour
         // transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         isLedgeGrabbing = false;
     }
+    [Header("Input Buffering")]
+    public float bufferWindow = 0.2f; // How long to "remember" a click
+    private float lastBufferTime;
+    private bool isBufferActive;
+
 
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            EnemyController enemy = EnemyInAttackingRange();
-            if ( enemy != null)
+            // 1. Record the click and start the buffer timer
+            lastBufferTime = Time.time;
+            isBufferActive = true;
+
+            // 2. If we aren't currently attacking, start immediately
+            if (!isAttacking)
             {
-                enemy.TakeDamage(attackDamage);
-            }
-            attackEnded = false;
-            comboCounter++;
-            if (comboCounter > 3)
-            {
-                comboCounter = 0;
-            }
-            if(!isAttacking){
-                isAttacking = true;
-                Debug.Log("Combo Number: " + comboCounter);
-                if(comboCounter == 1){
-                    animator.SetTrigger("attackStart");
-                }
-                StartCoroutine(ComboTimer());
-                
+                ProcessAttack();
             }
         }
+    }
+
+    private void ProcessAttack()
+    {
+        isAttacking = true;
+        isBufferActive = false; // Buffer consumed
+
+        // Reset combo if too much time passed since the LAST actual swing
+        if (Time.time - lastAttackTime > comboResetTime)
+        {
+            comboCounter = 0;
+        }
+
+        lastAttackTime = Time.time;
+        comboCounter++;
+        if (comboCounter > 3) comboCounter = 1;
+
+        animator.SetInteger("comboCounter", comboCounter);
+        animator.SetTrigger("attackStart");
+
+        // Hit detection logic
+        EnemyController enemy = EnemyInAttackingRange();
+        if (enemy != null) enemy.TakeDamage(attackDamage);
+    }
+
+    // Called via Animation Event near the end of every attack clip
+    public void CheckForBuffer()
+    {
+        if (isBufferActive && (Time.time - lastBufferTime <= bufferWindow))
+        {
+            ProcessAttack();
+        }
+        else
+        {
+            isBufferActive = false;
+            // If no buffer, this hit is officially "done"
+            // This is where your Alternate Ending transition would trigger
+        }
+    }
+
+    public void ResetAttackState()
+    {
+        isAttacking = false;
+        comboCounter = 0;
+        animator.SetInteger("comboCounter", 0);
+        animator.ResetTrigger("attackStart"); // Clear any leftover clicks
+    }
+
+    public void EndCombo()
+    {
+        comboCounter = 0;
+        animator.SetInteger("comboCounter", comboCounter);
     }
 
     private EnemyController EnemyInAttackingRange()
