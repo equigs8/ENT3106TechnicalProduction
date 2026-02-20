@@ -294,10 +294,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 1
-  speed: 1
   runningSpeed: 3
   facingRight: 1
-  turnAnimationFinshed: 1
+  turnAnimationFinished: 1
   jumpForce: 6
   wallJumpForce: 300
   baseGravity: 1
@@ -317,11 +316,7 @@ MonoBehaviour:
   wallSlideSpeed: 1
   wallJumpRelease: 0
   attackDamage: 2
-  lastComboEnd: 0
-  cooldownTime: 0.5
   comboCounter: 0
-  comboWindow: 0.25
-  isComboWindowOver: 0
   attackRange: 1
   comboResetTime: 0.5
   ledgeCheck: {fileID: 0}
@@ -504,7 +499,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 93636933}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: NewMove
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -520,7 +515,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 93636933}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: NewJump
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -657,7 +652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &111422170
 Rigidbody2D:
   serializedVersion: 5
@@ -5093,7 +5088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1444894510
 Transform:
   m_ObjectHideFlags: 0
@@ -6182,7 +6177,7 @@ RectTransform:
   m_Father: {fileID: 1655041606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000015258789, y: 0.0052986145}
   m_SizeDelta: {x: 10, y: -0.0106}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6257,7 +6252,7 @@ RectTransform:
   m_Father: {fileID: 1007516599}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000015258789, y: 0.0052986145}
   m_SizeDelta: {x: 10, y: -0.0106}
   m_Pivot: {x: 0.5, y: 0.5}
