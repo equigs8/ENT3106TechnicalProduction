@@ -306,10 +306,11 @@ public class PlayerController : MonoBehaviour
 
     void FlipCharacter()
     {
-        facingRight = !facingRight;
         Vector3 ls = transform.localScale;
         ls.x *= -1;
         transform.localScale = ls;
+
+        // Signal that the transition is complete
         turnAnimationFinshed = true;
     }
     public void AttackEnded()
@@ -322,11 +323,12 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        if((facingRight && horizontal < 0 || !facingRight && horizontal > 0) && turnAnimationFinshed)
+        if(isGrounded &&(facingRight && horizontal < 0 || !facingRight && horizontal > 0) && turnAnimationFinshed)
         {
+            facingRight = !facingRight;
             turnAnimationFinshed = false;
             animator.SetTrigger("changeDirection");
-            Debug.Log("Change Direction");
+            Debug.Log("Change Direction Started");
         }
     }
 
@@ -406,46 +408,52 @@ public class PlayerController : MonoBehaviour
 
     public void NewJump(InputAction.CallbackContext context)
     {
-        if (isWallSliding)
+        // 1. Initial Press Logic (Started)
+        // Using context.started ensures the jump logic only runs ONCE per click,
+        // even if you keep holding the button when you land.
+        if (context.started)
         {
-            if (context.performed)
+            if (isWallSliding)
             {
                 WallJump();
-                Debug.Log("Preform Wall Jump");
-            }else if (context.canceled)
-            {
-                if (isLedgeGrabbing)
-                {
-                    animator.SetTrigger("grab");
-                } 
+                Debug.Log("Perform Wall Jump");
             }
-            
-        }else if (isGrounded && isGrabable)
-        {
-            Debug.Log("grabbable");
-            if (context.performed)
+            else if (isLedgeGrabbing)
             {
-                if(true)
-                {
-                    climbBegunPosition = transform.position + ledgeGrabOffset1;
-                    if(!facingRight){
-                        ledgeGrabOffset2.x *= -1;
-                    }
-                    climbEndPosition = transform.position + ledgeGrabOffset2;
-                    //transform.position = new Vector3(transform.position.x, transform.position.y + .33f, transform.position.z);
-                    transform.position = climbBegunPosition;
-                    animator.SetTrigger("climb");
-                    Debug.Log("Grab");
-                    isLedgeGrabbing = true;
-                }
+                // Optional: If you want to jump off a ledge grab
+                // LedgeJump(); 
+            }
+            else if (isGrounded)
+            {
+                // Regular Jump
+                animator.SetTrigger("Jump");
+                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
+                Debug.Log("Jump Triggered");
+            }
+            else if (isGrabable)
+            {
+                // Your existing ledge climbing logic
+                climbBegunPosition = transform.position + ledgeGrabOffset1;
+                if (!facingRight) { ledgeGrabOffset2.x *= -1; }
+                climbEndPosition = transform.position + ledgeGrabOffset2;
+                
+                transform.position = climbBegunPosition;
+                animator.SetTrigger("climb");
+                isLedgeGrabbing = true;
+                Debug.Log("Grab Started");
             }
         }
-        else if(IsGrounded()){
-            animator.SetTrigger("Jump");
-            if (context.performed)
+
+        // 2. Button Release Logic (Canceled)
+        // This allows for variable jump height (holding longer = higher jump).
+        if (context.canceled)
+        {
+            if (isLedgeGrabbing)
             {
-                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
-            }else if (context.canceled)
+                animator.SetTrigger("grab");
+            }
+            // If we are still moving up, cut the velocity to end the jump early
+            else if (rb2D.linearVelocity.y > 0)
             {
                 rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, rb2D.linearVelocity.y * 0.5f);
             }
