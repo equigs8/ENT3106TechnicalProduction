@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         // A ledge is grabbable if we hit a wall but the ledge check (higher up) is clear
         isGrabbable = WallCheck() && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, groundLayer);
+        Debug.Log($"Is Grabbable: {isGrabbable}");
     }
 
     private bool WallCheck()
@@ -152,6 +153,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleFlipping()
     {
+        if (isAttacking) return;
         // Only flip if grounded to prevent turn-animation bugs in mid-air
         if (isGrounded && turnAnimationFinished)
         {
@@ -203,15 +205,16 @@ public class PlayerController : MonoBehaviour
             {
                 WallJump();
             }
+            else if (isGrabbable && !isLedgeGrabbing)
+            {
+                StartLedgeClimb();
+            }
             else if (isGrounded)
             {
                 animator.SetTrigger("Jump");
                 
             }
-            else if (isGrabbable && !isLedgeGrabbing)
-            {
-                StartLedgeClimb();
-            }
+            
         }
 
         if (context.canceled)
@@ -233,6 +236,7 @@ public class PlayerController : MonoBehaviour
 
     private void StartLedgeClimb()
     {
+        Debug.Log("Start Ledge Climb");
         Vector3 climbBegunPosition = transform.position + ledgeGrabOffset1;
         Vector3 actualOffset2 = ledgeGrabOffset2;
         if (!facingRight) actualOffset2.x *= -1;
@@ -367,5 +371,10 @@ public class PlayerController : MonoBehaviour
         rb2D.AddForce(new Vector2(direction * force, force * 0.5f), ForceMode2D.Impulse); 
         
         Debug.Log($"Knockback applied. Direction: {direction}, Force: {force}");
+    }
+
+    public void RunningSlide(InputAction.CallbackContext context)
+    {
+        animator.SetTrigger("runningSlide");
     }
 }
