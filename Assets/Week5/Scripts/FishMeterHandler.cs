@@ -1,14 +1,15 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI; // Required when Using UI elements.
 
 public class FishMeterHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        public Slider FishMeter;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         
