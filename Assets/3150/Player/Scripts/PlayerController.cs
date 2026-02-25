@@ -501,4 +501,19 @@ public class PlayerController : MonoBehaviour
             TakeDamage(spikeDamge);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            collision.GetComponent<PlayerPrompt>().PlayerInRange(true);
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            collision.GetComponent<PlayerPrompt>().PlayerInRange(false);
+        }
+    }
 }
