@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     public int maxHealth;
     public int currentHealth;
+    public GameObject healthBar;
+    public GameObject deathMessage;
 
     [Header("Input Buffering")]
     public float bufferWindow = 0.2f;
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
     private void LedgeCheck()
     {
         // A ledge is grabbable if we hit a wall but the ledge check (higher up) is clear
-        isGrabbable = WallCheck() && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, groundLayer);
+        isGrabbable = WallCheck() && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, wallLayer);
         Debug.Log($"Is Grabbable: {isGrabbable}");
     }
 
@@ -367,7 +369,18 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         animator.SetTrigger("tookDamage");
-        if (currentHealth <= 0) animator.SetTrigger("death");
+        if (currentHealth <= 0) {
+            animator.SetTrigger("death");
+            playerControlsLocked = true;
+            healthBar.transform.Find("Fill Area").gameObject.SetActive(false);
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(healthBar);
+        Destroy(gameObject);
+        deathMessage.SetActive(true);
     }
 
     void OnDrawGizmosSelected()
@@ -410,8 +423,10 @@ public class PlayerController : MonoBehaviour
     {
         playerControlsLocked = true;
         yield return new WaitForSeconds(KnockbackCooldownTime);
-        rb2D.linearVelocity = Vector2.zero;
+        
         playerControlsLocked = false;
+        rb2D.linearVelocity = Vector2.zero;
+        horizontal = 0;
         AddToCollisionLayer(spikeLayer);
         Debug.Log("Knockback Cooldown Over");
     }
@@ -446,26 +461,33 @@ public class PlayerController : MonoBehaviour
 
             if(collider2D == null)
             {
+                Debug.Log("Collider is null");
                 return;
             }
-
+            Debug.Log("Sliding");
+            spikeCollider2D.enabled = false;
             RemoveCollsionLayer(spikeLayer);
-            
-
         }
         else
         {
+            Debug.Log("Not Sliding");
+            if (!spikeCollider2D.enabled)
+            {
+                spikeCollider2D.enabled = true;
+            }
             AddToCollisionLayer(spikeLayer);
         }
     }
 
     void AddToCollisionLayer(LayerMask layer)
     {
+        Debug.Log("Added to Collision Layer");
         Physics.IgnoreLayerCollision(8, 10, false);
     }
     void RemoveCollsionLayer(LayerMask layer)
     {
         //collider2D.excludeLayers = layer;
+        Debug.Log("Removed from Collision Layer");
         Physics.IgnoreLayerCollision(8, 10, true);
     }
 

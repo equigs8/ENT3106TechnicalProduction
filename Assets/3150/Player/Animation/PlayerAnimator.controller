@@ -505,10 +505,10 @@ AnimatorStateMachine:
     m_Position: {x: 20, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1718194789082057404}
-    m_Position: {x: 440, y: 50, z: 0}
+    m_Position: {x: -60, y: -460, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6828995927872034285}
-    m_Position: {x: 440, y: 100, z: 0}
+    m_Position: {x: 50, y: -390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7257365795303220589}
     m_Position: {x: -350, y: 290, z: 0}
@@ -558,6 +558,7 @@ AnimatorStateMachine:
   - {fileID: -6281177299639358152}
   - {fileID: 4393368069947321}
   - {fileID: -8530167389385989210}
+  - {fileID: 6948593734747224435}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
@@ -1047,6 +1048,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: runningSlide
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: death
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -1608,6 +1615,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &6948593734747224435
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: death
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 6828995927872034285}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &7258035748422944029
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
