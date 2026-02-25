@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -72,15 +73,35 @@ public class PlayerController : MonoBehaviour
     // Components
     private Rigidbody2D rb2D;
     private Animator animator;
+    private CapsuleCollider2D collider2D;
     private float horizontal;
+    public TilemapCollider2D spikeCollider2D;
 
+
+
+    [Header("Floor Sliding")]
+    public bool isFloorSliding;
+    public LayerMask spikeLayer;
+
+    [Header("Locking Input")]
+    public bool playerControlsLocked;
+
+    [Header("Environment")]
+    public int spikeDamge;
+    public float spikeKnockbackForce;
+    public float KnockbackCooldownTime;
+
+    //public float floorSlideSpeed = 1f;
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        collider2D = GetComponent<CapsuleCollider2D>();
         
         if (maxHealth > 0) currentHealth = maxHealth;
         else Debug.LogError("Max Health is not set");
+
+        
     }
 
     void Update()
@@ -93,6 +114,7 @@ public class PlayerController : MonoBehaviour
         ProcessGravity();
         ProcessWallSlide();
         ProcessWallJump();
+        ProcessRunningSlide();
         
         // Movement and Visuals
         HandleFlipping();
@@ -147,6 +169,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isLedgeGrabbing || isAttacking) return;
 
+        if(playerControlsLocked) return;
+
         speed = Input.GetKey(KeyCode.LeftShift) ? runningSpeed : walkingSpeed;
         rb2D.linearVelocity = new Vector2(horizontal * speed, rb2D.linearVelocity.y);
     }
@@ -193,13 +217,20 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            horizontal = input.x;
+            if (!playerControlsLocked)
+            {
+                horizontal = input.x;
+            }
+            else
+            {
+                horizontal = rb2D.linearVelocity.x;
+            }
         }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !playerControlsLocked)
         {
             if (isWallSliding)
             {
@@ -368,13 +399,84 @@ public class PlayerController : MonoBehaviour
         rb2D.linearVelocity = Vector2.zero; 
         
         // Apply the force
-        rb2D.AddForce(new Vector2(direction * force, force * 0.5f), ForceMode2D.Impulse); 
+        rb2D.AddForce(new Vector2(direction * force, 0), ForceMode2D.Impulse); 
         
         Debug.Log($"Knockback applied. Direction: {direction}, Force: {force}");
+
+        StartCoroutine(KnockbackCooldown());
+    }
+
+    IEnumerator KnockbackCooldown()
+    {
+        playerControlsLocked = true;
+        yield return new WaitForSeconds(KnockbackCooldownTime);
+        rb2D.linearVelocity = Vector2.zero;
+        playerControlsLocked = false;
+        AddToCollisionLayer(spikeLayer);
+        Debug.Log("Knockback Cooldown Over");
     }
 
     public void RunningSlide(InputAction.CallbackContext context)
     {
-        animator.SetTrigger("runningSlide");
+        if (context.performed)
+        {
+            if (!isFloorSliding)
+            {
+                animator.SetBool("runningSlide", true);
+                isFloorSliding = true;
+            }
+        }
+    }
+
+    public void RunningSlideRelease(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            animator.SetBool("runningSlide", false);
+            isFloorSliding = false;
+        }
+    }
+
+    private void ProcessRunningSlide()
+    {
+
+        if (isFloorSliding)
+        {
+            
+
+            if(collider2D == null)
+            {
+                return;
+            }
+
+            RemoveCollsionLayer(spikeLayer);
+            
+
+        }
+        else
+        {
+            AddToCollisionLayer(spikeLayer);
+        }
+    }
+
+    void AddToCollisionLayer(LayerMask layer)
+    {
+        Physics.IgnoreLayerCollision(8, 10, false);
+    }
+    void RemoveCollsionLayer(LayerMask layer)
+    {
+        //collider2D.excludeLayers = layer;
+        Physics.IgnoreLayerCollision(8, 10, true);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 10)
+        {
+            Debug.Log("Hit Spikes");
+            RemoveCollsionLayer(spikeLayer);
+            Knockback(facingRight, spikeKnockbackForce);
+            TakeDamage(spikeDamge);
+        }
     }
 }
