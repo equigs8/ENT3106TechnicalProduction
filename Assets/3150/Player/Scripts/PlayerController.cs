@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Inventory")]
+    public List<LevelKey> levelKeys = new List<LevelKey>();
+    public List<BlockerUpgrade> blockerUpgrades = new List<BlockerUpgrade>();
+
     [Header("Movement")]
     public float walkingSpeed = 1f;
     public float runningSpeed = 4f;
@@ -389,8 +395,14 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(groundCheck.position, groundCheckSize);
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        if (isGrabbable)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        }else{
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        }
     }
 
     public int GetHealth()
@@ -515,5 +527,21 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<PlayerPrompt>().PlayerInRange(false);
         }
+    }
+
+
+    public void RemoveBlocker()
+    {
+        
+    }
+
+    internal List<LevelKey> GetLevelKeys()
+    {
+        return levelKeys;
+    }
+
+    internal List<BlockerUpgrade> GetBlockerUpgrades()
+    {
+        return blockerUpgrades;
     }
 }
