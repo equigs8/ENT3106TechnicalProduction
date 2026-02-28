@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,9 @@ public class PlatformGameManager : MonoBehaviour
     public Level activeLevel;
     private Level requestedLevel;
 
-
+    [Header("Level Keys and Upgrades")]
+    public Dictionary<Level, Blocker> levelBlockersDict = new Dictionary<Level, Blocker>();
+    public Dictionary<Level, LevelKey> levelKeysDict = new Dictionary<Level, LevelKey>();
 
     [Header("Player")]
     public PlayerController player;
@@ -98,6 +101,60 @@ public class PlatformGameManager : MonoBehaviour
         else
         {
             Debug.Log("You lose!");
+        }
+    }
+
+    internal void PlayerHasBlockerUpgrade(Blocker blockerInRange)
+    {
+        for (int i = 0; i < blockerUpgrades.Count; i++)
+        {
+            if (blockerUpgrades[i] == null)
+            {
+                Debug.Log("Blocker upgrades is null, skipping");
+                continue;
+            }
+            if (blockerInRange == null)
+            {
+                Debug.Log("Blocker is null, skipping");
+                continue;
+            }
+            if(blockerInRange.GetUpdateRequired() == null)
+            {
+                Debug.Log("Blocker upgrade is null, skipping");
+                continue;
+            }
+            Debug.Log($"Blocker upgrade {i}: {blockerUpgrades[i]}");
+            if (blockerUpgrades[i] == blockerInRange.GetUpdateRequired())
+            {
+                Debug.Log("Blocker upgrade unlocked!");
+                DestroyLevelBlocker(blockerInRange);
+            }
+            else
+            {
+                Debug.Log("Blocker upgrade not unlocked!");
+            }
+        }
+    }
+
+    void DestroyLevelBlocker(Blocker blockerInRange)
+    {
+        string tilemapPathName = "Spring Tilemap/Blocker Tiles";
+        activeLevel.blockerCleared = true;
+        if (activeLevel.transform.Find(tilemapPathName) == null)
+        {
+            Debug.Log("Blocker tilemap is null");
+        }
+        else
+        {
+            activeLevel.transform.Find(tilemapPathName).gameObject.SetActive(false);
+        }
+        if(blockerInRange == null)
+        {
+            Debug.Log("Blocker is null");
+        }
+        else
+        {
+            blockerInRange.gameObject.SetActive(false);
         }
     }
 }

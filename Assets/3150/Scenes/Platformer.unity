@@ -357,7 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelKeys: []
-  blockerUpgrades: []
+  blockerUpgrades:
+  - {fileID: 1873965976}
+  inBlockerRange: 0
   walkingSpeed: 1
   runningSpeed: 3
   facingRight: 1
@@ -398,6 +400,7 @@ MonoBehaviour:
   deathMessage: {fileID: 1928604520}
   bufferWindow: 0.4
   spikeCollider2D: {fileID: 507591202}
+  manager: {fileID: 1295995133}
   isFloorSliding: 0
   spikeLayer:
     serializedVersion: 2
@@ -656,7 +659,19 @@ MonoBehaviour:
     m_ActionId: 354777ba-45e0-48e9-b91f-fa48bedcfd78
     m_ActionName: Platformer/Portal
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 93636933}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: RemoveBlocker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 094bd37a-80b8-4b1d-a3d7-5e2cdea73286
     m_ActionName: Platformer/Interact
   m_NeverAutoSwitchControlSchemes: 0
@@ -1473,6 +1488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301021792}
+  - component: {fileID: 301021793}
   m_Layer: 0
   m_Name: Winter Level
   m_TagString: Untagged
@@ -1499,6 +1515,22 @@ Transform:
   - {fileID: 1718393580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &301021793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301021791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf7e74799cb42f4796792b98146a72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: 
+  blocker: {fileID: 0}
+  blockerCleared: 0
+  levelKey: {fileID: 0}
 --- !u!1 &303011875
 GameObject:
   m_ObjectHideFlags: 0
@@ -6881,12 +6913,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  springLevel: {fileID: 0}
+  springLevel: {fileID: 1358597230}
   summerLevel: {fileID: 0}
   autumnLevel: {fileID: 0}
-  winterLevel: {fileID: 0}
+  winterLevel: {fileID: 301021793}
   activeLevel: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 93636933}
   levelKeys: []
   blockerUpgrades: []
 --- !u!4 &1295995134
@@ -7316,8 +7348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf7e74799cb42f4796792b98146a72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: 
-  key: {fileID: 0}
+  levelName: Spring
+  blocker: {fileID: 1456649122}
+  blockerCleared: 0
+  levelKey: {fileID: 0}
 --- !u!1 &1360538541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7866,6 +7900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56da3b58f99e5f448886f1440ae7f523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockerUpgrade: {fileID: 1873965976}
 --- !u!1 &1458962799
 GameObject:
   m_ObjectHideFlags: 0
@@ -10441,6 +10476,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1718393580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1873965975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873965977}
+  - component: {fileID: 1873965976}
+  m_Layer: 0
+  m_Name: RockBlockerUpgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1873965976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873965975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2b63ae0f2bcfc4f8a0b411614b6f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockerThatThisCanDestroy: {fileID: 1456649122}
+--- !u!4 &1873965977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873965975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.12313, y: 2.17084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1879435879
 GameObject:
@@ -14151,3 +14231,4 @@ SceneRoots:
   - {fileID: 1295995134}
   - {fileID: 2037397523}
   - {fileID: 93636931}
+  - {fileID: 1873965977}

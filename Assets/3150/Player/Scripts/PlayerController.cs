@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [Header("Inventory")]
     public List<LevelKey> levelKeys = new List<LevelKey>();
     public List<BlockerUpgrade> blockerUpgrades = new List<BlockerUpgrade>();
+    public bool inBlockerRange;
+    private Blocker blockerInRange;
 
     [Header("Movement")]
     public float walkingSpeed = 1f;
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider2D collider2D;
     private float horizontal;
     public TilemapCollider2D spikeCollider2D;
+    public PlatformGameManager manager;
 
 
 
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
         // Physics Checks
         GroundCheck();
         LedgeCheck();
@@ -519,20 +523,31 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == 11)
         {
             collision.GetComponent<PlayerPrompt>().PlayerInRange(true);
+            blockerInRange = collision.GetComponent<Blocker>();
+            inBlockerRange = true;
         }
     }
+
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 11)
         {
             collision.GetComponent<PlayerPrompt>().PlayerInRange(false);
+            blockerInRange = null;
+            inBlockerRange = false;
         }
     }
 
 
     public void RemoveBlocker()
     {
-        
+        Debug.Log("Pressed E");
+        if (inBlockerRange)
+        {
+            Debug.Log("BlockerInRange");
+            manager.PlayerHasBlockerUpgrade(blockerInRange); 
+        }
     }
 
     internal List<LevelKey> GetLevelKeys()
@@ -542,6 +557,7 @@ public class PlayerController : MonoBehaviour
 
     internal List<BlockerUpgrade> GetBlockerUpgrades()
     {
+        Debug.Log("Blocker upgrades: " + blockerUpgrades.Count);
         return blockerUpgrades;
     }
 }
