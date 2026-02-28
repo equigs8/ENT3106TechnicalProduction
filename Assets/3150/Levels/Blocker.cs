@@ -5,6 +5,7 @@ public class Blocker : MonoBehaviour
 {
 
     public BlockerUpgrade blockerUpgrade;
+    public Animator animator;
 
     internal BlockerUpgrade GetUpdateRequired()
     {
@@ -12,15 +13,13 @@ public class Blocker : MonoBehaviour
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void RemoveBlocker()
     {
-        
+        animator.SetTrigger("destroy");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyAnimationOver()
     {
-        
+        Destroy(gameObject);
     }
 }

@@ -154,7 +154,7 @@ public class PlatformGameManager : MonoBehaviour
         }
         else
         {
-            blockerInRange.gameObject.SetActive(false);
+            blockerInRange.RemoveBlocker();
         }
     }
 }
