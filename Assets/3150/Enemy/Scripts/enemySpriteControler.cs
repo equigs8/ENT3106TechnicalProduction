@@ -18,4 +18,8 @@ public class enemySpriteControler : MonoBehaviour
     {
         enemyController.Die();
     }
+    public void EndRangedAttack()
+    {
+        enemyController.EndRangedAttack();
+    }
 }

@@ -1,13 +1,26 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        NightBorne,
+        Necromancer
+    }
+    [Header("Enemy Info")]
+    public EnemyType enemyType;
+    [Tooltip("The projectile used by the enemy. Only needed for Necromancer")]
+    public GameObject projectilePrefab;
+    private GameObject projectile;
+
     [Header("References")]
     public Animator animator;
     public SpriteRenderer sprite;
+    public Transform projectileSpawnPoint;
 
     [Header("Movement")]
     public float moveSpeed = 1f;
@@ -22,6 +35,9 @@ public class EnemyController : MonoBehaviour
     public float attackCooldown = 1f;
     public int attackDamage = 1;
     public float knockbackForce = 1f;
+    public float rangedAttackDamage = 1f;
+    public float rangedAttackSpeed = 1f;
+    public float healAmount = 1f;
     
     [SerializeField]private bool canAttack = true;
     private bool isAttacking = false;
@@ -29,6 +45,10 @@ public class EnemyController : MonoBehaviour
     [Header("Health")]
     public int maxHealth = 10;
     public int currentHealth;
+
+    
+    private string[] necromancerAbilities= { "Ranged Attack"};
+    //, "Heal", "Close Attack" 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,8 +68,17 @@ public class EnemyController : MonoBehaviour
 
         if (CheckIfPlayerInDetectRange())
         {
+            if(enemyType == EnemyType.Necromancer && canAttack)
+            {
+                PickRandomAction();
+            }
+            else
+            {
+                Move();
+            }
             if (CheckIfPlayerInAttackRange() && canAttack)
             {
+                
                 Attack();
             }
             else if(!CheckIfPlayerInAttackRange() && canAttack)
@@ -73,6 +102,44 @@ public class EnemyController : MonoBehaviour
         //If in attack range and can attack, attack. else if in detect range, move towards player. else do nothing
     }
 
+    private void PickRandomAction()
+    {
+        int random = UnityEngine.Random.Range(0, necromancerAbilities.Length);
+        isAttacking = true;
+        if (necromancerAbilities[random] == "Ranged Attack")
+        {
+            RangedAttack();
+        }
+        else if (necromancerAbilities[random] == "Heal")
+        {
+            Heal();
+        }
+        else if (necromancerAbilities[random] == "Close Attack")
+        {
+            CloseAttack();
+        }
+        StartCoroutine(AttackCooldown());
+    }
+
+    private void CloseAttack()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void Heal()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void RangedAttack()
+    {
+        animator.SetTrigger("rangedAttack");
+    }
+
+    public void EndRangedAttack()
+    {
+        projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+    }
 
     void UpdateDirection()
     {
