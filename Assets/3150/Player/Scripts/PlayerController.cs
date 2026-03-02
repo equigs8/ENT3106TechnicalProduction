@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessWallSlide()
     {
-        if (!isLedgeGrabbing && !isGrounded && WallCheck() && horizontal != 0)
+        if (!isLedgeGrabbing && !isGrounded && WallCheck())
         {
             isWallSliding = true;
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, Mathf.Max(rb2D.linearVelocity.y, -wallSlideSpeed));
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (isLedgeGrabbing || isAttacking) return;
+        if (isLedgeGrabbing || isAttacking || isWallJumping) return;
 
         if(playerControlsLocked) return;
 
@@ -303,14 +303,18 @@ public class PlayerController : MonoBehaviour
     public void WallJumpRelease()
     {
         wallJumpRelease = true;
-        rb2D.AddForce(Vector2.up * wallJumpForce);
+
+        rb2D.linearVelocity = Vector2.zero;
         float sideForce = facingRight ? -wallJumpForce : wallJumpForce; // Jump AWAY from wall
-        rb2D.AddForce(Vector2.right * sideForce);
+
+        Vector2 jumpDirection = new Vector2(sideForce, wallJumpForce);
+
+        rb2D.AddForce(jumpDirection, ForceMode2D.Impulse);
     }
 
     private void ProcessWallJump()
     {
-        if (isWallJumping && wallJumpRelease) isWallJumping = false;
+        if(isGrounded && wallJumpRelease) isWallJumping = false;
         animator.SetBool("wallJumping", isWallJumping);
     }
 
@@ -320,6 +324,11 @@ public class PlayerController : MonoBehaviour
         ls.x *= -1;
         transform.localScale = ls;
         turnAnimationFinished = true;
+    }
+
+    public void FlipCharacterDirection()
+    {
+        facingRight = !facingRight;
     }
 
     public void ClimbEnded()
