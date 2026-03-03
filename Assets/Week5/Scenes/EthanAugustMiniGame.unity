@@ -909,8 +909,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 981318357}
-  - {fileID: 2124420696}
   - {fileID: 502205585}
+  - {fileID: 2124420696}
   m_Father: {fileID: 1545321942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishMeter: {fileID: 1141965156}
-  speed: 100
+  speed: 1
   meterStarted: 0
   winArea: {fileID: 502205582}
   winAreaMax: 50
