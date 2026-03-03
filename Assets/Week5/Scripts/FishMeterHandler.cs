@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // Required when Using UI elements.
+using UnityEngine.UI;
+using System; // Required when Using UI elements.
 
 public class FishMeterHandler : MonoBehaviour
 {
@@ -17,18 +18,18 @@ public class FishMeterHandler : MonoBehaviour
     public float winAreaMin;
 
     float t;
-    
+
     void Start()
     {
         meterHeight = gameObject.GetComponent<RectTransform>().sizeDelta.y;
 
-        winAreaMax = Remap(winAreaMax, -100, 100, 0, meterHeight);
-        winAreaMin = Remap(winAreaMin, -100, 100, 0, meterHeight);
-        Debug.Log("Meter height: " + meterHeight);
-        Debug.Log("Win area max: " + winAreaMax);
-        Debug.Log("Win area min: " + winAreaMin);
-        winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
-        winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(100,winAreaMax - winAreaMin);
+        // winAreaMax = Remap(winAreaMax, -100, 100, 0, meterHeight);
+        // winAreaMin = Remap(winAreaMin, -100, 100, 0, meterHeight);
+        // Debug.Log("Meter height: " + meterHeight);
+        // Debug.Log("Win area max: " + winAreaMax);
+        // Debug.Log("Win area min: " + winAreaMin);
+        // winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
+        // winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(100,winAreaMax - winAreaMin);
         
 
     }
@@ -48,5 +49,16 @@ public class FishMeterHandler : MonoBehaviour
         return outputLow + (value - inputLow) * (outputHigh - outputLow) / (inputHigh - inputLow);
     }
 
+    public void StartMeter(float winMax, float winMin){
+        meterStarted = true;
+        winAreaMax = Remap(winMax, -100, 100, 0, meterHeight);
+        winAreaMin = Remap(winMin, -100, 100, 0, meterHeight);
+        winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
+        winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(100,winAreaMax - winAreaMin);
+    }
 
+    internal float GetFishMeterValue()
+    {
+        return fishMeter.value;
+    }
 }
