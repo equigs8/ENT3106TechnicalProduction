@@ -310,6 +310,8 @@ public class PlayerController : MonoBehaviour
         Vector2 jumpDirection = new Vector2(sideForce, wallJumpForce);
 
         rb2D.AddForce(jumpDirection, ForceMode2D.Impulse);
+
+        //isWallJumping = false;
     }
 
     private void ProcessWallJump()
