@@ -19,9 +19,11 @@ public class FishMeterHandler : MonoBehaviour
 
     float t;
 
+    public GameObject handleBarArea;
+
     void Start()
     {
-        meterHeight = gameObject.GetComponent<RectTransform>().sizeDelta.y;
+        meterHeight = handleBarArea.GetComponent<RectTransform>().sizeDelta.y;
 
         // winAreaMax = Remap(winAreaMax, -100, 100, 0, meterHeight);
         // winAreaMin = Remap(winAreaMin, -100, 100, 0, meterHeight);
@@ -54,7 +56,7 @@ public class FishMeterHandler : MonoBehaviour
         winAreaMax = Remap(winMax, -100, 100, 0, meterHeight);
         winAreaMin = Remap(winMin, -100, 100, 0, meterHeight);
         winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
-        winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(100,winAreaMax - winAreaMin);
+        winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(winArea.GetComponent<RectTransform>().sizeDelta.x,winAreaMax - winAreaMin);
     }
 
     internal float GetFishMeterValue()
