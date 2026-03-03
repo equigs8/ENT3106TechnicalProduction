@@ -4,14 +4,24 @@ using UnityEngine.UI; // Required when Using UI elements.
 
 public class FishMeterHandler : MonoBehaviour
 {
+    public Slider FishMeter;
+
+    public float speed;
+    public bool meterStarted;
+
     void Start()
     {
-        public Slider FishMeter;
+
 
     }
 
     void Update()
     {
-        
+        if(meterStarted){
+       FishMeter.value = Mathf.PingPong(Time.time*speed,100);
+        }
+
+
     }
+
 }
