@@ -1,7 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
+
+    private Sprite sprite;
+    public SpriteRenderer spriteRenderer;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +19,10 @@ public class Fish : MonoBehaviour
     void Update()
     {
         
+    }
+    internal void SetFishType(Sprite newSprite)
+    {
+        sprite = newSprite;
+        spriteRenderer.sprite = sprite;
     }
 }

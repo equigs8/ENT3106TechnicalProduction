@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -21,10 +22,21 @@ public class gameManager : MonoBehaviour
     private bool displayedLoseScreen;
 
     [Header("Game Objects References")]
+    [Header("Fish Meter")]
     public FishMeterHandler fishMeter;
+    private int fishMeterValue;
+    private int fishMeterWinMax;
+    private int fishMeterWinMin;
+
     public TensionMeterHandler tensionMeter;
     public GameObject winScreen;
     public GameObject loseScreen;
+
+    [Header("Fish")]
+    public GameObject fishPrefab;
+    public List<Sprite> fishTypes = new List<Sprite>();
+    public Transform fishSpawnPoint;
+    private Fish currentFish;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +54,9 @@ public class gameManager : MonoBehaviour
             gameState = GameState.Pre;
         }
         isWinner = false;
+
+        // winScreen.SetActive(false);
+        // loseScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,10 +68,27 @@ public class gameManager : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         gameState = GameState.In;
+                        fishMeter.meterStarted = true;
                     }
                 break;
             case GameState.In:
+                if (fishMeter.meterStarted)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (fishMeterValue < fishMeterWinMax && fishMeterValue > fishMeterWinMin)
+                        {
+                            Debug.Log("you hit");
+                            currentFish = SpawnFish().GetComponent<Fish>();
+                            currentFish.SetFishType(GetRandomFishType());
 
+                        }
+                        else
+                        {
+                            Debug.Log("you missed");
+                        }
+                    }
+                }
                 // if(fishMeter.GetStatus() == "win" )
                 // {
                 //     gameState = GameState.Post;
@@ -83,6 +115,12 @@ public class gameManager : MonoBehaviour
         }
     }
 
+
+    public GameObject SpawnFish()
+    {
+        return Instantiate(fishPrefab, fishSpawnPoint.position, fishSpawnPoint.rotation);
+    }
+
     public void DisplayWinScreen()
     {
         displayedWinScreen = true;
@@ -99,5 +137,10 @@ public class gameManager : MonoBehaviour
         displayedLoseScreen = false;
     }
 
+
+    public Sprite GetRandomFishType()
+    {
+        return fishTypes[Random.Range(0, fishTypes.Count)];
+    }
 
 }
