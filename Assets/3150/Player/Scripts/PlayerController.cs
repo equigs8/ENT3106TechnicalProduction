@@ -1,10 +1,19 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Inventory")]
+    public List<LevelKey> levelKeys = new List<LevelKey>();
+    public List<BlockerUpgrade> blockerUpgrades = new List<BlockerUpgrade>();
+    public bool inBlockerRange;
+    private Blocker blockerInRange;
+
     [Header("Movement")]
     public float walkingSpeed = 1f;
     public float runningSpeed = 4f;
@@ -63,6 +72,8 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     public int maxHealth;
     public int currentHealth;
+    public GameObject healthBar;
+    public GameObject deathMessage;
 
     [Header("Input Buffering")]
     public float bufferWindow = 0.2f;
@@ -72,19 +83,41 @@ public class PlayerController : MonoBehaviour
     // Components
     private Rigidbody2D rb2D;
     private Animator animator;
+    private CapsuleCollider2D collider2D;
     private float horizontal;
+    public TilemapCollider2D spikeCollider2D;
+    public PlatformGameManager manager;
 
+
+
+    [Header("Floor Sliding")]
+    public bool isFloorSliding;
+    public LayerMask spikeLayer;
+
+    [Header("Locking Input")]
+    public bool playerControlsLocked;
+
+    [Header("Environment")]
+    public int spikeDamge;
+    public float spikeKnockbackForce;
+    public float KnockbackCooldownTime;
+
+    //public float floorSlideSpeed = 1f;
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        collider2D = GetComponent<CapsuleCollider2D>();
         
         if (maxHealth > 0) currentHealth = maxHealth;
         else Debug.LogError("Max Health is not set");
+
+        
     }
 
     void Update()
     {
+        
         // Physics Checks
         GroundCheck();
         LedgeCheck();
@@ -93,6 +126,7 @@ public class PlayerController : MonoBehaviour
         ProcessGravity();
         ProcessWallSlide();
         ProcessWallJump();
+        ProcessRunningSlide();
         
         // Movement and Visuals
         HandleFlipping();
@@ -108,7 +142,7 @@ public class PlayerController : MonoBehaviour
     private void LedgeCheck()
     {
         // A ledge is grabbable if we hit a wall but the ledge check (higher up) is clear
-        isGrabbable = WallCheck() && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, groundLayer);
+        isGrabbable = WallCheck() && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, groundLayer) && !Physics2D.OverlapBox(ledgeCheck.position, ledgeCheckSize, 0, wallLayer);
         Debug.Log($"Is Grabbable: {isGrabbable}");
     }
 
@@ -132,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessWallSlide()
     {
-        if (!isLedgeGrabbing && !isGrounded && WallCheck() && horizontal != 0)
+        if (!isLedgeGrabbing && !isGrounded && WallCheck())
         {
             isWallSliding = true;
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, Mathf.Max(rb2D.linearVelocity.y, -wallSlideSpeed));
@@ -145,7 +179,9 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (isLedgeGrabbing || isAttacking) return;
+        if (isLedgeGrabbing || isAttacking || isWallJumping) return;
+
+        if(playerControlsLocked) return;
 
         speed = Input.GetKey(KeyCode.LeftShift) ? runningSpeed : walkingSpeed;
         rb2D.linearVelocity = new Vector2(horizontal * speed, rb2D.linearVelocity.y);
@@ -193,13 +229,20 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            horizontal = input.x;
+            if (!playerControlsLocked)
+            {
+                horizontal = input.x;
+            }
+            else
+            {
+                horizontal = rb2D.linearVelocity.x;
+            }
         }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !playerControlsLocked)
         {
             if (isWallSliding)
             {
@@ -260,14 +303,18 @@ public class PlayerController : MonoBehaviour
     public void WallJumpRelease()
     {
         wallJumpRelease = true;
-        rb2D.AddForce(Vector2.up * wallJumpForce);
+
+        rb2D.linearVelocity = Vector2.zero;
         float sideForce = facingRight ? -wallJumpForce : wallJumpForce; // Jump AWAY from wall
-        rb2D.AddForce(Vector2.right * sideForce);
+
+        Vector2 jumpDirection = new Vector2(sideForce, wallJumpForce);
+
+        rb2D.AddForce(jumpDirection, ForceMode2D.Impulse);
     }
 
     private void ProcessWallJump()
     {
-        if (isWallJumping && wallJumpRelease) isWallJumping = false;
+        if(isGrounded && wallJumpRelease) isWallJumping = false;
         animator.SetBool("wallJumping", isWallJumping);
     }
 
@@ -277,6 +324,11 @@ public class PlayerController : MonoBehaviour
         ls.x *= -1;
         transform.localScale = ls;
         turnAnimationFinished = true;
+    }
+
+    public void FlipCharacterDirection()
+    {
+        facingRight = !facingRight;
     }
 
     public void ClimbEnded()
@@ -336,7 +388,18 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         animator.SetTrigger("tookDamage");
-        if (currentHealth <= 0) animator.SetTrigger("death");
+        if (currentHealth <= 0) {
+            animator.SetTrigger("death");
+            playerControlsLocked = true;
+            healthBar.transform.Find("Fill Area").gameObject.SetActive(false);
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(healthBar);
+        Destroy(gameObject);
+        deathMessage.SetActive(true);
     }
 
     void OnDrawGizmosSelected()
@@ -345,8 +408,14 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(groundCheck.position, groundCheckSize);
         Gizmos.color = Color.green;
         Gizmos.DrawCube(wallCheck.position, wallCheckSize);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        if (isGrabbable)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        }else{
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(ledgeCheck.position, ledgeCheckSize);
+        }
     }
 
     public int GetHealth()
@@ -368,13 +437,136 @@ public class PlayerController : MonoBehaviour
         rb2D.linearVelocity = Vector2.zero; 
         
         // Apply the force
-        rb2D.AddForce(new Vector2(direction * force, force * 0.5f), ForceMode2D.Impulse); 
+        rb2D.AddForce(new Vector2(direction * force, 0), ForceMode2D.Impulse); 
         
         Debug.Log($"Knockback applied. Direction: {direction}, Force: {force}");
+
+        StartCoroutine(KnockbackCooldown());
+    }
+
+    IEnumerator KnockbackCooldown()
+    {
+        playerControlsLocked = true;
+        yield return new WaitForSeconds(KnockbackCooldownTime);
+        
+        playerControlsLocked = false;
+        rb2D.linearVelocity = Vector2.zero;
+        horizontal = 0;
+        AddToCollisionLayer(spikeLayer);
+        Debug.Log("Knockback Cooldown Over");
     }
 
     public void RunningSlide(InputAction.CallbackContext context)
     {
-        animator.SetTrigger("runningSlide");
+        if (context.performed)
+        {
+            if (!isFloorSliding)
+            {
+                animator.SetBool("runningSlide", true);
+                isFloorSliding = true;
+            }
+        }
+    }
+
+    public void RunningSlideRelease(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            animator.SetBool("runningSlide", false);
+            isFloorSliding = false;
+        }
+    }
+
+    private void ProcessRunningSlide()
+    {
+
+        if (isFloorSliding)
+        {
+            
+
+            if(collider2D == null)
+            {
+                Debug.Log("Collider is null");
+                return;
+            }
+            Debug.Log("Sliding");
+            spikeCollider2D.enabled = false;
+            RemoveCollsionLayer(spikeLayer);
+        }
+        else
+        {
+            Debug.Log("Not Sliding");
+            if (!spikeCollider2D.enabled)
+            {
+                spikeCollider2D.enabled = true;
+            }
+            AddToCollisionLayer(spikeLayer);
+        }
+    }
+
+    void AddToCollisionLayer(LayerMask layer)
+    {
+        Debug.Log("Added to Collision Layer");
+        Physics.IgnoreLayerCollision(8, 10, false);
+    }
+    void RemoveCollsionLayer(LayerMask layer)
+    {
+        //collider2D.excludeLayers = layer;
+        Debug.Log("Removed from Collision Layer");
+        Physics.IgnoreLayerCollision(8, 10, true);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 10)
+        {
+            Debug.Log("Hit Spikes");
+            RemoveCollsionLayer(spikeLayer);
+            Knockback(facingRight, spikeKnockbackForce);
+            TakeDamage(spikeDamge);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            collision.GetComponent<PlayerPrompt>().PlayerInRange(true);
+            blockerInRange = collision.GetComponent<Blocker>();
+            inBlockerRange = true;
+        }
+    }
+
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            collision.GetComponent<PlayerPrompt>().PlayerInRange(false);
+            blockerInRange = null;
+            inBlockerRange = false;
+        }
+    }
+
+
+    public void RemoveBlocker()
+    {
+        Debug.Log("Pressed E");
+        if (inBlockerRange)
+        {
+            Debug.Log("BlockerInRange");
+            manager.PlayerHasBlockerUpgrade(blockerInRange); 
+        }
+    }
+
+    internal List<LevelKey> GetLevelKeys()
+    {
+        return levelKeys;
+    }
+
+    internal List<BlockerUpgrade> GetBlockerUpgrades()
+    {
+        Debug.Log("Blocker upgrades: " + blockerUpgrades.Count);
+        return blockerUpgrades;
     }
 }
