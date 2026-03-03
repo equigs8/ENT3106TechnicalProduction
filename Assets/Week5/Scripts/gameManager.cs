@@ -24,9 +24,9 @@ public class gameManager : MonoBehaviour
     [Header("Game Objects References")]
     [Header("Fish Meter")]
     public FishMeterHandler fishMeter;
-    private int fishMeterValue;
-    private int fishMeterWinMax;
-    private int fishMeterWinMin;
+    private float fishMeterValue;
+    private float fishMeterWinMax;
+    private float fishMeterWinMin;
 
     public TensionMeterHandler tensionMeter;
     public GameObject winScreen;
@@ -68,7 +68,11 @@ public class gameManager : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         gameState = GameState.In;
-                        fishMeter.meterStarted = true;
+                        fishMeterWinMax = Random.Range(-50f, 100f);
+                        fishMeterWinMin = fishMeterWinMax - Random.Range(10, 100);
+                        fishMeter.StartMeter(fishMeterWinMax,  fishMeterWinMin);
+
+
                     }
                 break;
             case GameState.In:
@@ -76,7 +80,9 @@ public class gameManager : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        if (fishMeterValue < fishMeterWinMax && fishMeterValue > fishMeterWinMin)
+                        fishMeterValue = fishMeter.GetFishMeterValue();
+                        fishMeter.meterStarted = false;
+                        if (fishMeterValue <= fishMeterWinMax && fishMeterValue >= fishMeterWinMin)
                         {
                             Debug.Log("you hit");
                             currentFish = SpawnFish().GetComponent<Fish>();
