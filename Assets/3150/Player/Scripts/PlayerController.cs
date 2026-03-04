@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public Vector2 groundCheckSize;
     public LayerMask groundLayer;
-    private bool isGrounded;
+    [SerializeField] private bool isGrounded;
 
     [Header("Wall Check")]
     public Transform wallCheck;
@@ -137,15 +137,20 @@ public class PlayerController : MonoBehaviour
         LedgeCheck();
         
         // Logic Processing
+        
+        
+        // Movement and Visuals
+        HandleFlipping();
+        
+        UpdateAnimator();
+    }
+
+    void FixedUpdate(){
         ProcessGravity();
         ProcessWallSlide();
         ProcessWallJump();
         ProcessRunningSlide();
-        
-        // Movement and Visuals
-        HandleFlipping();
         ApplyMovement();
-        UpdateAnimator();
     }
 
     private void GroundCheck()
@@ -619,11 +624,33 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+
+        for (int i = 0; i < blockerUpgrades.Count; i++)
+        {
+            for (int j = 0; j < blockerUpgradeSlots.Count; j++)
+            {
+                if (blockerUpgrades[i] != null && !blockerUpgrades[i].slotted)
+                {
+                    if (blockerUpgradeSlots[j].GetComponent<Image>().sprite == null)
+                    {
+                        blockerUpgradeSlots[j].gameObject.GetComponent<Image>().sprite = blockerUpgrades[i].GetComponent<SpriteRenderer>().sprite;
+                        blockerUpgrades[i].slotted = true;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     void AddLevelKey(LevelKey levelKey)
     {
         levelKeys.Add(levelKey);
+        UpdateUI();
+    }
+
+    void AddBlockerUpgrade(BlockerUpgrade blockerUpgrade)
+    {
+        blockerUpgrades.Add(blockerUpgrade);
         UpdateUI();
     }
 
@@ -650,6 +677,12 @@ public class PlayerController : MonoBehaviour
         {
             collision.GetComponent<LevelKey>().Collected();
             AddLevelKey(collision.GetComponent<LevelKey>());
+        }
+        if (collision.GetComponent<BlockerUpgrade>() != null)
+        {
+            collision.GetComponent<BlockerUpgrade>().Collected();
+            AddBlockerUpgrade(collision.GetComponent<BlockerUpgrade>());
+            
         }
     }
 
