@@ -782,8 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelKeys: []
-  blockerUpgrades:
-  - {fileID: 988179614}
+  blockerUpgrades: []
   inBlockerRange: 0
   levelKeySlots:
   - {fileID: 1045730176}
@@ -31881,14 +31880,14 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1102924231}
+  - {fileID: 1458962803}
+  - {fileID: 976125969}
+  - {fileID: 574197059}
   - {fileID: 25043344}
   - {fileID: 1358597229}
   - {fileID: 85851394}
   - {fileID: 301021792}
   - {fileID: 229575648}
-  - {fileID: 1458962803}
-  - {fileID: 976125969}
-  - {fileID: 574197059}
   - {fileID: 537377569}
   - {fileID: 1295995134}
   - {fileID: 2037397523}
