@@ -35,6 +35,8 @@ public class PlatformGameManager : MonoBehaviour
 
         levels = new Level[] { springLevel, summerLevel, autumnLevel, winterLevel };
         activeLevel = levels[(int)currentLevel];
+
+        player.transform.position = activeLevel.spawnPoint.position;
     }
 
     // Update is called once per frame
@@ -70,6 +72,33 @@ public class PlatformGameManager : MonoBehaviour
         activeLevel.gameObject.SetActive(false);
         newLevel.gameObject.SetActive(true);
         activeLevel = newLevel;
+        player.transform.position = activeLevel.spawnPoint.position;
+        player.portalControler.ResetPortal();
+        player.CloseLevelSelectMenu();
+
+    }
+
+    public void LevelButton(Level level)
+    {
+        if(level == null) return;
+        if(level == summerLevel)
+        {
+            currentLevel = CurrentLevel.Summer;
+        }else if(level == autumnLevel)
+        {
+            currentLevel = CurrentLevel.Autumn;
+        }else if(level == winterLevel)
+        {
+            currentLevel = CurrentLevel.Winter;
+        }else if(level == springLevel)
+        {
+            currentLevel = CurrentLevel.Spring;
+        }else
+        {
+            Debug.LogWarning("Level not found");
+        }
+
+        // currentLevel = level;
     }
 
 
@@ -123,7 +152,7 @@ public class PlatformGameManager : MonoBehaviour
                 Debug.Log("Blocker upgrade is null, skipping");
                 continue;
             }
-            Debug.Log($"Blocker upgrade {i}: {blockerUpgrades[i]}");
+            //Debug.Log($"Blocker upgrade {i}: {blockerUpgrades[i]}");
             if (blockerUpgrades[i] == blockerInRange.GetUpdateRequired())
             {
                 Debug.Log("Blocker upgrade unlocked!");
@@ -132,21 +161,22 @@ public class PlatformGameManager : MonoBehaviour
             else
             {
                 Debug.Log("Blocker upgrade not unlocked!");
+                blockerInRange.ShowFailMessage();
             }
         }
     }
 
     void DestroyLevelBlocker(Blocker blockerInRange)
     {
-        string tilemapPathName = "Spring Tilemap/Blocker Tiles";
+        GameObject tilemap = blockerInRange.GetLevel().GetBlockerTilemap();
         activeLevel.blockerCleared = true;
-        if (activeLevel.transform.Find(tilemapPathName) == null)
+        if (tilemap == null)
         {
             Debug.Log("Blocker tilemap is null");
         }
         else
         {
-            activeLevel.transform.Find(tilemapPathName).gameObject.SetActive(false);
+            tilemap.SetActive(false);
         }
         if(blockerInRange == null)
         {

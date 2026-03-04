@@ -7,10 +7,13 @@ public class Level : MonoBehaviour
 
     [Header("Level Settings")]
     public string levelName;
+    public Transform spawnPoint;
 
 
     [Header("Level Objects")]
     public Blocker blocker;
+    public GameObject blockerTilemap;
+    
     public bool blockerCleared;
     public LevelKey levelKey;
     
@@ -32,5 +35,10 @@ public class Level : MonoBehaviour
     void GetBlockerStatus()
     {
         //blockerCleared = blocker.blockerCleared;
+    }
+
+    public GameObject GetBlockerTilemap()
+    {
+        return blockerTilemap;
     }
 }

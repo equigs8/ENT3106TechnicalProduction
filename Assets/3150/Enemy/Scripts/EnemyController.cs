@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -40,7 +41,8 @@ public class EnemyController : MonoBehaviour
     public float healAmount = 1f;
     
     [SerializeField]private bool canAttack = true;
-    private bool isAttacking = false;
+    [SerializeField]private bool isAttacking = false;
+    [SerializeField]private bool canMove = true;
 
     [Header("Health")]
     public int maxHealth = 10;
@@ -66,36 +68,51 @@ public class EnemyController : MonoBehaviour
             canAttack = false;
         }
 
-        if (CheckIfPlayerInDetectRange())
+        if(enemyType == EnemyType.Necromancer)
         {
-            if(enemyType == EnemyType.Necromancer && canAttack)
+            if (CheckIfPlayerInDetectRange())
             {
-                PickRandomAction();
+                if(canAttack){
+                    Debug.Log("Attack");
+                    PickRandomAction();
+
+                }else if(!CheckIfPlayerInAttackRange() && !isAttacking){
+                    Move();
+                }else{
+                    Idle();
+                }
             }
             else
             {
-                Move();
+
+                Idle();
             }
-            if (CheckIfPlayerInAttackRange() && canAttack)
+            
+        }
+        else
+        {
+            if (CheckIfPlayerInDetectRange())
             {
+                if (CheckIfPlayerInAttackRange() && canAttack)
+                {
+                    
+                    Attack();
+                }
+                else if(!CheckIfPlayerInAttackRange() && canAttack)
+                {
                 
-                Attack();
-            }
-            else if(!CheckIfPlayerInAttackRange() && canAttack)
-            {
-               
-                Move();
+                    Move();
+                }
+                else
+                {
+                    Idle();
+                }
             }
             else
             {
                 Idle();
             }
         }
-        else
-        {
-            Idle();
-        }
-
         
                 
 
@@ -105,9 +122,9 @@ public class EnemyController : MonoBehaviour
     private void PickRandomAction()
     {
         int random = UnityEngine.Random.Range(0, necromancerAbilities.Length);
-        isAttacking = true;
         if (necromancerAbilities[random] == "Ranged Attack")
         {
+            Debug.Log("Ranged Attack");
             RangedAttack();
         }
         else if (necromancerAbilities[random] == "Heal")
@@ -118,7 +135,7 @@ public class EnemyController : MonoBehaviour
         {
             CloseAttack();
         }
-        StartCoroutine(AttackCooldown());
+        //StartCoroutine(AttackCooldown());
     }
 
     private void CloseAttack()
@@ -133,12 +150,16 @@ public class EnemyController : MonoBehaviour
 
     private void RangedAttack()
     {
+        Debug.Log("Ranged Attack Animation");
         animator.SetTrigger("rangedAttack");
+        isAttacking = true;
+        StartCoroutine(AttackCooldown());
     }
 
     public void EndRangedAttack()
     {
         projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        isAttacking = false;
     }
 
     void UpdateDirection()
@@ -150,8 +171,10 @@ public class EnemyController : MonoBehaviour
     IEnumerator AttackCooldown()
     {
         canAttack = false;
+        Debug.Log("Attack Cooldown Starting");
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+        Debug.Log("Attack Cooldown Over");
     }
 
     IEnumerator MovementCooldown()

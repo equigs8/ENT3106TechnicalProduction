@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public List<BlockerUpgrade> blockerUpgrades = new List<BlockerUpgrade>();
     public bool inBlockerRange;
     private Blocker blockerInRange;
+    public List<InventorySlot> levelKeySlots = new List<InventorySlot>();
+    public List<InventorySlot> blockerUpgradeSlots = new List<InventorySlot>();
 
     [Header("Movement")]
     public float walkingSpeed = 1f;
@@ -106,7 +110,7 @@ public class PlayerController : MonoBehaviour
     [Header("Changing Levels")]
     public GameObject levelSelectMenu;
     public GameObject portalPrefab;
-    private PortalControler portalControler;
+    public PortalControler portalControler;
 
     [Header("UI")]
     public GameObject pauseMenuUI;
@@ -242,6 +246,11 @@ public class PlayerController : MonoBehaviour
         Pause();
         levelSelectMenu.SetActive(true);
     }
+    public void CloseLevelSelectMenu()
+    {
+        Resume();
+        levelSelectMenu.SetActive(false);
+    }
 
      public void Pause()
     {
@@ -310,7 +319,14 @@ public class PlayerController : MonoBehaviour
         {
             if (isWallSliding)
             {
-                WallJump();
+                if(isGrabbable && !isLedgeGrabbing)
+                {
+                    StartLedgeClimb();
+                }
+                else
+                {
+                    WallJump();
+                }
             }
             else if (isGrabbable && !isLedgeGrabbing)
             {
@@ -580,6 +596,37 @@ public class PlayerController : MonoBehaviour
         Physics.IgnoreLayerCollision(8, 10, true);
     }
 
+    void UpdateUI()
+    {
+        Debug.Log("Updating UI");
+        for (int i = 0; i < levelKeys.Count; i++)
+        {
+            if (levelKeys[i] != null && !levelKeys[i].slotted)
+            {
+                for (int j = 0; j < levelKeySlots.Count; j++)
+                {
+                    if (levelKeySlots[j].GetComponent<Image>().sprite == null)
+                    {
+                        Debug.Log("Found empty slot");
+                        levelKeySlots[j].gameObject.GetComponent<Image>().sprite = levelKeys[i].GetComponent<SpriteRenderer>().sprite;
+                        levelKeys[i].slotted = true;
+                        break;
+                    }else
+                    {
+                        Debug.Log("Slot is not empty");
+                    }
+                }
+                
+            }
+        }
+    }
+
+    void AddLevelKey(LevelKey levelKey)
+    {
+        levelKeys.Add(levelKey);
+        UpdateUI();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == 10)
@@ -599,6 +646,11 @@ public class PlayerController : MonoBehaviour
             blockerInRange = collision.GetComponent<Blocker>();
             inBlockerRange = true;
         }
+        if(collision.GetComponent<LevelKey>() != null)
+        {
+            collision.GetComponent<LevelKey>().Collected();
+            AddLevelKey(collision.GetComponent<LevelKey>());
+        }
     }
 
 
@@ -606,6 +658,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == 11)
         {
+            if (blockerInRange != null)
+            {
+                blockerInRange.HideFailMessage();
+            }
             collision.GetComponent<PlayerPrompt>().PlayerInRange(false);
             blockerInRange = null;
             inBlockerRange = false;

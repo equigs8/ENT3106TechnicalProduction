@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c9e9f05aeddff6488e0f8dbd8cc7086
+guid: cc6f653902de8234d955bcdad5cbdee3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639082073004106100
+  platformSettingsDirtyTick: 639082115766427901
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Key
+  - name: FallUpgradeArt
     originalName: 
-    pivot: {x: 0.5, y: -0.44444445}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 14
-      height: 9
-    spriteID: 1ad621ac9a00a4b41832f8ad5074ae5b
+      width: 16
+      height: 16
+    spriteID: aabb02cb5fca651409a9e1a1a21f27be
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3021629591
+      value0: 3535849458
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Key
+    name: FallUpgradeArt
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Key
+    - name: FallUpgradeArt
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 4
-        width: 14
-        height: 9
-      spriteId: 1ad621ac9a00a4b41832f8ad5074ae5b
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      spriteId: aabb02cb5fca651409a9e1a1a21f27be
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
