@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     public GameObject healthBar;
     public GameObject deathMessage;
+    public GameObject winMessage;
 
     [Header("Input Buffering")]
     public float bufferWindow = 0.2f;
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        CheckIfWinner();
         // Physics Checks
         GroundCheck();
         LedgeCheck();
@@ -143,6 +144,9 @@ public class PlayerController : MonoBehaviour
         HandleFlipping();
         
         UpdateAnimator();
+
+        ForceLeft();
+        ForceRight();
     }
 
     void FixedUpdate(){
@@ -153,6 +157,25 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+
+    private void CheckIfWinner(){
+        if (levelKeys.Count == 4){
+            GameOver(true);
+        }
+    }
+
+    private void GameOver(bool win){
+        Pause();
+        if (win){
+            Debug.Log("You win!");
+            winMessage.SetActive(true);
+        }
+        else{
+            deathMessage.SetActive(true);
+            Debug.Log("You lose!");
+        }
+
+    }
     private void GroundCheck()
     {
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
@@ -484,7 +507,7 @@ public class PlayerController : MonoBehaviour
     {
         Destroy(healthBar);
         Destroy(gameObject);
-        deathMessage.SetActive(true);
+        GameOver(false);
     }
 
     void OnDrawGizmosSelected()
@@ -721,5 +744,22 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Blocker upgrades: " + blockerUpgrades.Count);
         return blockerUpgrades;
+    }
+
+
+    public void ForceRight()
+    {
+        if (Input.GetKey(KeyCode.L)){
+            facingRight = true;
+            turnAnimationFinished = true;
+        }
+    }
+    public void ForceLeft()
+    {
+        if (Input.GetKey(KeyCode.K)){
+            facingRight = false;
+            turnAnimationFinished = true;
+        }
+        
     }
 }

@@ -13,10 +13,13 @@ public class Level : MonoBehaviour
     [Header("Level Objects")]
     public Blocker blocker;
     public GameObject blockerTilemap;
+    public Blocker blocker2;
+    public GameObject blockerTilemap2;
     
     public bool blockerCleared;
     public LevelKey levelKey;
-    
+    internal bool blocker2Cleared;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,5 +43,10 @@ public class Level : MonoBehaviour
     public GameObject GetBlockerTilemap()
     {
         return blockerTilemap;
+    }
+
+    internal GameObject GetBlockerTilemap2()
+    {
+        return blockerTilemap2;
     }
 }

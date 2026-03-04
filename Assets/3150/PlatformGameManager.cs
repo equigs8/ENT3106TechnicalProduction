@@ -168,8 +168,19 @@ public class PlatformGameManager : MonoBehaviour
 
     void DestroyLevelBlocker(Blocker blockerInRange)
     {
-        GameObject tilemap = blockerInRange.GetLevel().GetBlockerTilemap();
-        activeLevel.blockerCleared = true;
+        GameObject tilemap = null;
+        if(blockerInRange == blockerInRange.GetLevel().blocker2)
+        {
+            tilemap = blockerInRange.GetLevel().GetBlockerTilemap2();
+            activeLevel.blocker2Cleared = true;
+        }
+        else
+        {
+            tilemap = blockerInRange.GetLevel().GetBlockerTilemap();
+            activeLevel.blockerCleared = true;
+        }
+        
+        
         if (tilemap == null)
         {
             Debug.Log("Blocker tilemap is null");
