@@ -102,6 +102,16 @@ public class PlayerController : MonoBehaviour
     public float spikeKnockbackForce;
     public float KnockbackCooldownTime;
 
+
+    [Header("Changing Levels")]
+    public GameObject levelSelectMenu;
+    public GameObject portalPrefab;
+    private PortalControler portalControler;
+
+    [Header("UI")]
+    public GameObject pauseMenuUI;
+
+
     //public float floorSlideSpeed = 1f;
     void Start()
     {
@@ -216,7 +226,61 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("attack", isAttacking);
     }
 
-    // --- Renamed Input System Methods ---
+    public void SpawnPortal(InputAction.CallbackContext context)
+    {
+        if (context.started && isGrounded && !isWallSliding && portalControler == null)
+        {
+            portalControler = Instantiate(portalPrefab, transform.position - new Vector3(0, 0.5f, 0), Quaternion.identity).GetComponent<PortalControler>();
+        }else if (context.started && portalControler != null)
+        {
+            OpenLevelSelectMenu();
+        }
+    }
+
+    public void OpenLevelSelectMenu()
+    {
+        Pause();
+        levelSelectMenu.SetActive(true);
+    }
+
+     public void Pause()
+    {
+        Time.timeScale = 0f; // Pause the game
+        
+        AudioListener.pause = true; // Pause all audio
+    }
+
+    public void PauseButton(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (Time.timeScale == 1f)
+            {
+                PauseMenu();
+            }
+        }
+    }
+
+    public void PauseMenu()
+    {
+
+        Pause();
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(true); // Show the pause menu
+        }
+        
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f; // Resume the game
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false); // Hide the pause menu
+        }
+        AudioListener.pause = false; // Resume all audio
+    }
 
     public void Move(InputAction.CallbackContext context)
     {

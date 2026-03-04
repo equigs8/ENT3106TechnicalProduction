@@ -5,6 +5,7 @@ public class PlayerPrompt : MonoBehaviour
 
     public Collider2D inRangeCollider;
     public GameObject prompt;
+    public bool showPrompt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,10 +24,17 @@ public class PlayerPrompt : MonoBehaviour
         if(inRange)
         {
             prompt.SetActive(true);
+            showPrompt = true;
         }
         else
         {
             prompt.SetActive(false);
+            showPrompt = false;
         }
+    }
+
+    public bool GetShowPrompt()
+    {
+        return showPrompt;
     }
 }
