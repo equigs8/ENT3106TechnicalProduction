@@ -66,4 +66,10 @@ public class FishMeterHandler : MonoBehaviour
     {
         return fishMeter.value;
     }
+
+    public void Reset()
+    {
+        meterStarted = false;
+        fishMeter.value = 0;
+    } 
 }

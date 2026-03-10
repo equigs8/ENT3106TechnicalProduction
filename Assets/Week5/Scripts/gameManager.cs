@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
@@ -37,11 +37,13 @@ public class gameManager : MonoBehaviour
     public List<Sprite> fishTypes = new List<Sprite>();
     public Transform fishSpawnPoint;
     private Fish currentFish;
+    public int score;
+    public TextMeshProUGUI scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        UpdateScoreText();
         
         //make sure there is only 1 game manager instance in scene
         if (FindObjectsByType<gameManager>(FindObjectsSortMode.None).Length > 1)
@@ -65,6 +67,7 @@ public class gameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.Pre:
+                scoreText.text = "Score: " + score;
                     if (Input.GetMouseButtonDown(0))
                     {
                         gameState = GameState.In;
@@ -84,13 +87,18 @@ public class gameManager : MonoBehaviour
                         fishMeter.meterStarted = false;
                         if (fishMeterValue <= fishMeterWinMax && fishMeterValue >= fishMeterWinMin)
                         {
+                            score++;
+                            UpdateScoreText();
                             Debug.Log("you hit");
                             currentFish = SpawnFish().GetComponent<Fish>();
                             currentFish.SetFishType(GetRandomFishType());
 
+                            gameState = GameState.Post;
+
                         }
                         else
                         {
+                            gameState = GameState.Post;
                             Debug.Log("you missed");
                         }
                     }
@@ -110,8 +118,10 @@ public class gameManager : MonoBehaviour
 
                 break;
             case GameState.Post:
+                Debug.Log("Post");
                 if(isWinner && !displayedWinScreen)
                 {
+                    score++;
                     DisplayWinScreen();
                 }else if (!isWinner && !displayedLoseScreen)
                 {
@@ -121,6 +131,11 @@ public class gameManager : MonoBehaviour
         }
     }
 
+
+    void UpdateScoreText()
+    {
+        scoreText.text = "Score: " + score;
+    }
 
     public GameObject SpawnFish()
     {
@@ -138,6 +153,9 @@ public class gameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        Debug.Log("Resetting game");
+        scoreText.text = "Score: " + score;
+        Destroy(currentFish.gameObject);
         gameState = GameState.Pre;
         displayedWinScreen = false;
         displayedLoseScreen = false;
