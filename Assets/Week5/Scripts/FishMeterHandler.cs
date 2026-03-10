@@ -24,12 +24,12 @@ public class FishMeterHandler : MonoBehaviour
     void Start()
     {
         meterHeight = handleBarArea.GetComponent<RectTransform>().sizeDelta.y;
+        meterHeight = 1200;
+        Debug.Log(meterHeight);
 
         // winAreaMax = Remap(winAreaMax, -100, 100, 0, meterHeight);
         // winAreaMin = Remap(winAreaMin, -100, 100, 0, meterHeight);
-        // Debug.Log("Meter height: " + meterHeight);
-        // Debug.Log("Win area max: " + winAreaMax);
-        // Debug.Log("Win area min: " + winAreaMin);
+        
         // winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
         // winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(100,winAreaMax - winAreaMin);
         
@@ -57,6 +57,9 @@ public class FishMeterHandler : MonoBehaviour
         winAreaMin = Remap(winMin, -100, 100, 0, meterHeight);
         winArea.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,winAreaMax);
         winArea.GetComponent<RectTransform>().sizeDelta = new Vector2(winArea.GetComponent<RectTransform>().sizeDelta.x,winAreaMax - winAreaMin);
+        Debug.Log("Meter height: " + meterHeight);
+        Debug.Log("Win area max: " + winAreaMax);
+        Debug.Log("Win area min: " + winAreaMin);
     }
 
     internal float GetFishMeterValue()
